@@ -5,19 +5,15 @@ module.exports = {
   },
   extends: [
     'plugin:vue/essential',
-    'plugin:prettier/recommended',
     '@vue/standard',
     '@vue/typescript/recommended'
   ],
   parserOptions: {
     ecmaVersion: 2020
   },
-  plugins: ['prettier'],
-
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'prettier/prettier': 'error'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
   },
   overrides: [
     {
