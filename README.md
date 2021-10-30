@@ -1,8 +1,8 @@
 # Bobhare
 
-gestionnaire de sites favoris 
+## Gestionnaire de sites favoris 
 
-Fonctionnalités
+## Fonctionnalités
 
 - pouvoir catégoriser
 - système récupération favicon du site ou pouvoir customiser
@@ -10,6 +10,13 @@ Fonctionnalités
 - gestion de groupe (au sens individu)
 
 
-Définitions 
+## Définitions 
 
-Groupe : Un Owner (tous les droits), un gestionnaire (accès lecture/écriture par catégorie), troufion (juste accès en lecture).
+Groupe : 
+- Un Owner (tous les droits)
+- un gestionnaire (accès lecture/écriture par catégorie)
+- troufion (juste accès en lecture).
+
+## Architecture
+
+![Architecture](./doc/architecture.png)
