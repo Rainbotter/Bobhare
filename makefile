@@ -17,11 +17,14 @@ build:
 	@$(MAKE) -s -C back build
 	@echo "Build succeed"
 
-publish:
-	@echo "Publishing to Dockerhub..."
-	@echo "Building docker image"
+docker:
+	@echo "Building docker image..."
 	@docker --version
 	@docker build -t rainbowloutre/bobhare:latest -t rainbowloutre/bobhare:$(VERSION) .
+	@echo "Build docker image succeed"
+
+publish:
+	@echo "Publishing to Dockerhub..."
 	@echo $(DOCKER_PASSWORD) | docker login -u=$(DOCKER_USERNAME) --password-stdin
 	@docker push rainbowloutre/bobhare:latest
 	@docker push rainbowloutre/bobhare:$(VERSION)
