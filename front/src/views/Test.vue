@@ -10,15 +10,15 @@ export default {
   name: 'Test',
   methods: {
     test: (): void => {
-      axios.get<unknown>('http://localhost:9000/benchmark', {
-        headers: {
-          'content-type': 'application/json'
-        },
-        data: {
+      axios.post<unknown>('http://localhost:9000/benchmark',
+        {
           Bidule: true,
           Truc: '123'
-        }
-      }).then(value => console.log(value))
+        }, {
+          headers: {
+            'content-type': 'application/json'
+          }
+        }).then(value => console.log(value))
     }
   }
 }

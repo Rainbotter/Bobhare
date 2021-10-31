@@ -2,12 +2,13 @@ package config
 
 import (
 	"fr/bobhare/src/models/requests"
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 func SetupRoutes(r *gin.Engine) {
-	r.GET("/benchmark", func(c *gin.Context) {
+	r.POST("/benchmark", func(c *gin.Context) {
 		var json requests.Input
 		if err := c.ShouldBindJSON(&json); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
