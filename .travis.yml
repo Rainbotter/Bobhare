@@ -1,0 +1,17 @@
+sudo: required
+language: node_js
+node_js:
+  - "10"
+
+services:
+  - docker
+
+before_install:
+  - curl -fsSL https://deb.nodesource.com/setup_15.x | sudo -E bash -
+  - sudo apt update
+  - sudo apt -y install build-essential nodejs
+  - sudo snap install go --classic
+
+script: make
+
+after_success: make publish
