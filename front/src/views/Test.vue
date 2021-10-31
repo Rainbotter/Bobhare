@@ -1,5 +1,5 @@
 <template>
-  <button v-on:click="test">boutton de test</button>
+  <b-button v-on:click="test">boutton de test</b-button>
 </template>
 
 <script lang="ts">
