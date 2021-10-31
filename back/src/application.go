@@ -1,20 +1,18 @@
-package main
+package bobhare
 
 import (
-	_ "fmt"
+	"fr/bobhare/src/config"
+	"github.com/gin-gonic/gin"
 	"log"
-	_ "log"
 )
 
-import "github.com/gin-gonic/gin"
-
-func main() {
+func Run() {
 	r := gin.New()
 
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 
-	setupRoutes(r)
+	config.SetupRoutes(r)
 
 	log.Fatal(r.Run(":9000"))
 }

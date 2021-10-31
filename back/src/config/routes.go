@@ -1,4 +1,4 @@
-package main
+package config
 
 import (
 	"fr/bobhare/src/models/requests"
@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func setupRoutes(r *gin.Engine) {
+func SetupRoutes(r *gin.Engine) {
 	r.GET("/benchmark", func(c *gin.Context) {
 		var json requests.Input
 		if err := c.ShouldBindJSON(&json); err != nil {
