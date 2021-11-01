@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Bookmark } from 'src/app/models/bookmark.model';
 
 @Component({
   selector: 'app-home',
@@ -6,6 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  mockBookmark: Bookmark = {
+    'title': 'toto',
+    links: [{
+      'text': 'oui',
+      'url': 'https://www.youtube.com'
+    }]
+  }
 
   constructor() { }
 
