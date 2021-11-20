@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Bookmark } from 'src/app/models/bookmark.model';
-import { AuthService } from '../../services/auth.service'
+import { Component, OnInit } from '@angular/core'
+import { Group } from 'src/app/models/bookmark.model'
 
 @Component({
   selector: 'app-home',
@@ -9,21 +8,23 @@ import { AuthService } from '../../services/auth.service'
 })
 export class HomeComponent implements OnInit {
 
-  mockBookmark: Bookmark = {
-    'title': 'toto',
-    links: [{
-      'text': 'oui',
-      'url': 'https://www.youtube.com'
-    }]
+  groups: Group[] = [{
+    'title': 'Group 1',
+    bookmarks: [
+      {
+        'title': 'Bookmark 1',
+        link: {
+          'text': 'oui',
+          'url': 'https://www.youtube.com'
+        }
+      }
+    ]
+  }]
+
+  constructor () {
   }
 
-  constructor(private authService: AuthService) { }
-
-  ngOnInit(): void {
-  }
-
-  public login(): void {
-    this.authService.registerUser().subscribe();
+  ngOnInit (): void {
   }
 
 }

@@ -1,0 +1,10 @@
+<div class="card">
+  <div class="card-header bg-success text-break text-light">
+    {{group?.title}}
+  </div>
+  <ul class="list-group list-group-flush" *ngFor="let bookmark of group?.bookmarks">
+    <a  [href]="bookmark.link.url" target="_blank" class="list-group-item list-group-item-dark list-group-item-action">
+      {{bookmark.title}}
+    </a>
+  </ul>
+</div>

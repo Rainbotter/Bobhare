@@ -6,8 +6,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { BookmarkComponent } from './components/bookmark/bookmark.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { GroupComponent } from './components/group/group.component'
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import { HttpClientModule } from '@angular/common/http'
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    BookmarkComponent
+    GroupComponent
   ],
   imports: [
     BrowserModule,

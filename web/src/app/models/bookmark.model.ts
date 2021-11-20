@@ -1,6 +1,11 @@
+export interface Group {
+  title: string;
+  bookmarks: Bookmark[];
+}
+
 export interface Bookmark {
     title: string;
-    links: Link[];
+    link: Link;
 }
 
 export interface Link {
