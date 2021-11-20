@@ -1,21 +1,38 @@
 VERSION := 0.0.1
 
-all: clean build
+all: version clean dependencies build
 
 version:
 	@echo "Version : $(VERSION)"
 
 clean:
 	@echo "Cleaning..."
-	@$(MAKE) -s -C front clean
-	@$(MAKE) -s -C back clean
+	@rm -rf bin
+	@$(MAKE) -s -C web clean
 	@echo "Clean succeed"
+
+dependencies:
+	@echo "Fetching dependencies..."
+	@go get -d ./...
+	@$(MAKE) -s -C web dependencies
+	@echo "Fetch dependencies succeed"
 
 build:
 	@echo "Building..."
-	@$(MAKE) -s -C front build
-	@$(MAKE) -s -C back build
+	@$(MAKE) -s -C web build
+	@go build --ldflags '-linkmode external -extldflags "-static"' -o bin/bobhare main.go
+	@mkdir -p bin/web/dist
+	@cp -r web/dist/* bin/web/dist/
 	@echo "Build succeed"
+
+run:
+	@$(MAKE) -j2 run-front run-back
+
+run-front:
+	@$(MAKE) -s -C web run
+
+run-back:
+	@go run main.go
 
 docker:
 	@echo "Building docker image..."

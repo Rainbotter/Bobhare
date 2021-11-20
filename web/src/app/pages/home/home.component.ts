@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Bookmark } from 'src/app/models/bookmark.model';
+import { AuthService } from '../../services/auth.service'
 
 @Component({
   selector: 'app-home',
@@ -16,9 +17,13 @@ export class HomeComponent implements OnInit {
     }]
   }
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+  }
+
+  public login(): void {
+    this.authService.registerUser().subscribe();
   }
 
 }

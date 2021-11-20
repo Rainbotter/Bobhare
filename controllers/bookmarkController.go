@@ -1,8 +1,8 @@
-package bookmark_controller
+package controllers
 
 import (
-	"fr/bobhare/src/models"
-	"fr/bobhare/src/models/requests"
+	"fr/bobhare/models"
+	"fr/bobhare/models/requests"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

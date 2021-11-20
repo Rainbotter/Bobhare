@@ -1,21 +1,12 @@
-FROM nginx
+FROM golang:alpine
 
 # Base config
-RUN mkdir /bobhare
-WORKDIR /bobhare
-COPY scripts/docker/start.sh /docker-entrypoint.d/
-RUN chmod +x /docker-entrypoint.d/start.sh
+RUN mkdir /app
+RUN mkdir /data
+WORKDIR /app
 
-# Nginx config
-COPY scripts/docker/nginx/ /etc/nginx/
+COPY bin .
+RUN chmod -R +x bobhare
 
-# Front part
-RUN mkdir front
-COPY front/dist/ front
-
-# Back part
-RUN mkdir back
-COPY back/bin/bobhare back/
-RUN chmod -R +x back/bobhare
-
-EXPOSE 80
+CMD ./bobhare
+EXPOSE 9000

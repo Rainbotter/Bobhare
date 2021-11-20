@@ -1,5 +1,9 @@
 # Bobhare
 
+## Development
+
+Simply run ```make run``` and the app will
+
 ## Gestionnaire de sites favoris 
 
 ## Fonctionnalités
@@ -17,6 +21,4 @@ Groupe :
 - un gestionnaire (accès lecture/écriture par catégorie)
 - troufion (juste accès en lecture).
 
-## Architecture
 
-![Architecture](./doc/architecture.png)
