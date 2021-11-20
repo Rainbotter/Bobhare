@@ -11,6 +11,12 @@ clean:
 	@$(MAKE) -s -C web clean
 	@echo "Clean succeed"
 
+dev-dependencies:
+	@echo "Fetching dev dependencies..."
+	@curl -sSfL https://raw.githubusercontent.com/cosmtrek/air/master/install.sh | sh -s
+	@$(MAKE) -s -C . dependencies
+	@echo "Fetch dev dependencies succeed"
+
 dependencies:
 	@echo "Fetching dependencies..."
 	@go get -d ./...
@@ -19,10 +25,10 @@ dependencies:
 
 build:
 	@echo "Building..."
+	@go build --ldflags '-linkmode external -extldflags "-static"' -o target/bobhare main.go
 	@$(MAKE) -s -C web build
-	@go build --ldflags '-linkmode external -extldflags "-static"' -o bin/bobhare main.go
-	@mkdir -p bin/web/dist
-	@cp -r web/dist/* bin/web/dist/
+	@mkdir -p target/web/dist
+	@cp -r web/dist/* target/web/dist/
 	@echo "Build succeed"
 
 run:
@@ -32,13 +38,17 @@ run-front:
 	@$(MAKE) -s -C web run
 
 run-back:
-	@go run main.go
+	./bin/air -c runner.toml
 
 docker:
 	@echo "Building docker image..."
 	@docker --version
 	@docker build -t rainbowloutre/bobhare:latest -t rainbowloutre/bobhare:$(VERSION) .
 	@echo "Build docker image succeed"
+
+docker-run:
+	@echo "Running docker image..."
+	@docker run --rm -p 80:9000 rainbowloutre/bobhare:$(VERSION)
 
 publish:
 	@echo "Publishing to Dockerhub..."

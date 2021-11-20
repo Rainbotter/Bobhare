@@ -2,7 +2,7 @@
 
 ## Development
 
-Simply run ```make run``` and the app will
+Simply run ```make dev-dependencies:``` then ```make run``` and the app will run with live-reload
 
 ## Gestionnaire de sites favoris 
 

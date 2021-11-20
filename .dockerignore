@@ -1,6 +1,6 @@
-web/node_modules
 .idea
 config
 controllers
 models
 web
+bin

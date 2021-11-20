@@ -1,3 +1,8 @@
 .idea
 bobhare
 bin
+tmp
+
+runner
+runner-errors.log
+target
