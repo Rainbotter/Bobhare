@@ -1,30 +1,35 @@
-import { Component, OnInit } from '@angular/core'
-import { Group } from 'src/app/models/bookmark.model'
+import { Component, OnDestroy, OnInit } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
+import { Section } from '../../models/bookmark.model'
+import { BookmarkService } from '../../services/bookmark.service'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
-  groups: Group[] = [{
-    'title': 'Group 1',
-    bookmarks: [
-      {
-        'title': 'Bookmark 1',
-        link: {
-          'text': 'oui',
-          'url': 'https://www.youtube.com'
-        }
-      }
-    ]
-  }]
+  public section?: Section
 
-  constructor () {
+  private subscriptions: Subscription[] = []
+
+  constructor (private route: ActivatedRoute, private bookmarkService: BookmarkService) {
   }
 
-  ngOnInit (): void {
+  public ngOnInit (): void {
+    this.subscriptions.push(this.route.params.subscribe(params => {
+      if (params.section) {
+        this.section = this.bookmarkService.getSection(params.section)
+      } else {
+        this.section = this.bookmarkService.getSectionAtIndex(0)
+      }
+    }))
+  }
+
+  public ngOnDestroy (): void {
+    this.subscriptions.forEach(value => value.unsubscribe())
   }
 
 }

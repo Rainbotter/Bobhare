@@ -24,7 +24,6 @@ func setupSPARoutes(router *gin.Engine) {
 	router.Use(static.Serve("/", static.LocalFile("./web/dist", true)))
 
 	router.NoRoute(func(c *gin.Context) {
-		println(c.Request.RequestURI)
 		c.File("./web/dist/index.html")
 	})
 }

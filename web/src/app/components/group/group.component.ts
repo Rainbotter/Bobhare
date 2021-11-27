@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core'
-import { Bookmark, Group } from '../../models/bookmark.model'
+import { Group } from '../../models/bookmark.model'
 
 @Component({
   selector: 'bh-group',
@@ -10,9 +10,10 @@ export class GroupComponent implements OnInit {
 
   @Input() group?: Group
 
-  constructor() { }
+  constructor () {
+  }
 
-  ngOnInit(): void {
+  ngOnInit (): void {
   }
 
 }
