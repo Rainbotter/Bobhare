@@ -20,23 +20,20 @@ export class BookmarkService {
     this.bookmarks.next([
       {
         title: 'Section 1',
-        groups: [{
-          'title': 'Group 1',
-          bookmarks: [
-            {
-              'title': 'Bookmark 1',
-              link: {
-                'text': 'oui',
-                'url': 'https://www.youtube.com'
-              }
-            }
-          ]
-        },
+        groups: [
           {
-            'title': 'Group 1',
+            title: 'Group 1',
+            color: '#000000',
             bookmarks: [
               {
-                'title': 'Bookmark 1',
+                title: 'Bookmark 1q sdfqsd ffds sdfq s dqf sfdqsdf sdfq sfdqs dqfsqdfqsfdsfd ',
+                link: {
+                  'text': 'oui',
+                  'url': 'https://www.youtube.com'
+                }
+              },
+              {
+                title: 'Bookmark sqdf',
                 link: {
                   'text': 'oui',
                   'url': 'https://www.youtube.com'
@@ -45,10 +42,18 @@ export class BookmarkService {
             ]
           },
           {
-            'title': 'Group 1',
+            title: 'Group 1',
+            color: '#444444',
             bookmarks: [
               {
-                'title': 'Bookmark 1',
+                title: 'Bookmark 1q sdfqsd ffds sdfq s dqf sfdqsdf sdfq sfdqs dqfsqdfqsfdsfd ',
+                link: {
+                  'text': 'oui',
+                  'url': 'https://www.youtube.com'
+                }
+              },
+              {
+                title: 'Bookmark sqdf',
                 link: {
                   'text': 'oui',
                   'url': 'https://www.youtube.com'
@@ -57,17 +62,66 @@ export class BookmarkService {
             ]
           },
           {
-            'title': 'Group 1',
+            title: 'Group 1',
+            color: '#AAAAAA',
             bookmarks: [
               {
-                'title': 'Bookmark 1',
+                title: 'Bookmark 1q sdfqsd ffds sdfq s dqf sfdqsdf sdfq sfdqs dqfsqdfqsfdsfd ',
+                link: {
+                  'text': 'oui',
+                  'url': 'https://www.youtube.com'
+                }
+              },
+              {
+                title: 'Bookmark sqdf',
                 link: {
                   'text': 'oui',
                   'url': 'https://www.youtube.com'
                 }
               }
             ]
-          }]
+          },
+          {
+            title: 'Group 1',
+            color: '#F4A302',
+            bookmarks: [
+              {
+                title: 'Bookmark 1q sdfqsd ffds sdfq s dqf sfdqsdf sdfq sfdqs dqfsqdfqsfdsfd ',
+                link: {
+                  'text': 'oui',
+                  'url': 'https://www.youtube.com'
+                }
+              },
+              {
+                title: 'Bookmark sqdf',
+                link: {
+                  'text': 'oui',
+                  'url': 'https://www.youtube.com'
+                }
+              }
+            ]
+          },
+          {
+            title: 'Group 1',
+            color: '#FFFFFF',
+            bookmarks: [
+              {
+                title: 'Bookmark 1q sdfqsd ffds sdfq s dqf sfdqsdf sdfq sfdqs dqfsqdfqsfdsfd ',
+                link: {
+                  'text': 'oui',
+                  'url': 'https://www.youtube.com'
+                }
+              },
+              {
+                title: 'Bookmark sqdf',
+                link: {
+                  'text': 'oui',
+                  'url': 'https://www.youtube.com'
+                }
+              }
+            ]
+          },
+        ]
       }
     ])
 
@@ -88,6 +142,10 @@ export class BookmarkService {
 
   public addNewSection (section: Section): Observable<Section> {
     this.bookmarks.next([...this.bookmarks.getValue(), section])
+    return of(section)
+  }
+
+  public updateSection (section: Section): Observable<Section> {
     return of(section)
   }
 

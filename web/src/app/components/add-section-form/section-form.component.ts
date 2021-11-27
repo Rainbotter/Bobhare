@@ -5,13 +5,16 @@ import { first } from 'rxjs/operators'
 import { BookmarkService } from '../../services/bookmark.service'
 
 @Component({
-  selector: 'bh-add-section-form',
-  templateUrl: './add-section-form.component.html',
-  styleUrls: ['./add-section-form.component.scss']
+  selector: 'bh-section-form',
+  templateUrl: './section-form.component.html',
+  styleUrls: ['./section-form.component.scss']
 })
-export class AddSectionFormComponent implements OnInit {
+export class SectionFormComponent implements OnInit {
 
-  @Output() public newSectionAdded = new EventEmitter<Section>()
+  public r = Math.floor(Math.random() * (999999 - 100000)) + 100000
+
+  private _sectionToEdit?: Section
+  public editMode: boolean = false
 
   @Output() public closed = new EventEmitter<Section>()
 
@@ -29,12 +32,22 @@ export class AddSectionFormComponent implements OnInit {
   constructor (private bookmarkService: BookmarkService) {
   }
 
-  ngOnInit (): void {
+  public ngOnInit (): void {
+  }
+
+  @Input()
+  public set sectionToEdit (section: Section) {
+    if (section) {
+      this._sectionToEdit = section
+      this.newSection = this.initSection(this._sectionToEdit)
+      this.editMode = true
+    }
   }
 
   @Input()
   public set isOpen (value: boolean) {
     if (value) {
+      this.newSection = this.initSection(this._sectionToEdit)
       this.open()
     } else {
       this.dismiss()
@@ -42,16 +55,19 @@ export class AddSectionFormComponent implements OnInit {
   }
 
   public onHidden (): void {
-    this.newSection = this.initSection()
     this.closed.emit()
   }
 
   public onSubmit (): void {
+    this.newSection.title = this.newSection.title.trim()
     this.unknownErrorOccurred = false
     if (this.addNewSectionForm?.valid) {
       this.isLoading = true
-      this.newSection.title.trim()
-      this.addNewSection()
+      if (this.editMode) {
+        this.updateSection()
+      } else {
+        this.addNewSection()
+      }
     }
   }
 
@@ -59,8 +75,23 @@ export class AddSectionFormComponent implements OnInit {
     this.bookmarkService.addNewSection(this.newSection).pipe(first()).subscribe(value => {
       this.isLoading = false
       this.dismiss()
-      this.newSectionAdded.emit(this.newSection)
       this.unknownErrorOccurred = false
+    }, error => {
+      this.isLoading = false
+      if (error) {
+        this.unknownErrorOccurred = true
+      }
+    })
+  }
+
+  private updateSection (): void {
+    this.bookmarkService.updateSection(this.newSection).pipe(first()).subscribe(value => {
+      this.isLoading = false
+      this.dismiss()
+      this.unknownErrorOccurred = false
+      if (this._sectionToEdit) {
+        this._sectionToEdit.title = this.newSection.title
+      }
     }, error => {
       this.isLoading = false
       if (error) {
@@ -77,11 +108,15 @@ export class AddSectionFormComponent implements OnInit {
     this.openAddSectionModalBtn?.nativeElement.click()
   }
 
-  private initSection (): Section {
+  private initSection (section?: Section): Section {
     return {
-      title: '',
+      title: section?.title || '',
       groups: []
     }
+  }
+
+  public modalId (): string {
+    return 'addSectionModal' + this.r
   }
 
 }

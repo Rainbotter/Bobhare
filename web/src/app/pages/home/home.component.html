@@ -1,2 +1,4 @@
-<bh-group *ngFor="let group of section?.groups" [group]="group">
-</bh-group>
+<bh-section-detail *ngIf="section" [section]="section"></bh-section-detail>
+<div *ngIf="!section">
+  No section to be found
+</div>

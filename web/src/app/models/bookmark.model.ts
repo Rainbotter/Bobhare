@@ -7,6 +7,7 @@ export interface Section {
 export interface Group {
   id?: string,
   title: string;
+  color: string;
   bookmarks: Bookmark[];
 }
 

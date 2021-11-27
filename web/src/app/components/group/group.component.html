@@ -1,12 +1,12 @@
-<div class="row align-content-center">
-  <div class="card">
-    <div class="card-header bg-success text-break text-light">
-      {{group?.title}}
-    </div>
-    <ul class="list-group list-group-flush" *ngFor="let bookmark of group?.bookmarks">
-      <a [href]="bookmark.link.url" target="_blank" class="list-group-item list-group-item-dark list-group-item-action">
-        {{bookmark.title}}
-      </a>
-    </ul>
+<div class="card" *ngIf="group">
+  <div class="card-header text-break"
+       [style.background-color]="group.color"
+       [style.color]="calculateAppropriateFontColor(group)">
+    {{group?.title}}
   </div>
+  <ul class="list-group list-group-flush" *ngFor="let bookmark of group?.bookmarks">
+    <a [href]="bookmark.link.url" target="_blank" class="list-group-item list-group-item-dark list-group-item-action">
+      {{bookmark.title}}
+    </a>
+  </ul>
 </div>

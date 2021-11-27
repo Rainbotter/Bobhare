@@ -9,7 +9,8 @@ import { FooterComponent } from './components/footer/footer.component'
 import { HttpClientModule } from '@angular/common/http'
 import { GroupComponent } from './components/group/group.component'
 import { FormsModule } from '@angular/forms'
-import { AddSectionFormComponent } from './components/add-section-form/add-section-form.component'
+import { SectionFormComponent } from './components/add-section-form/section-form.component';
+import { SectionDetailComponent } from './components/section-detail/section-detail.component'
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AddSectionFormComponent } from './components/add-section-form/add-secti
     HeaderComponent,
     FooterComponent,
     GroupComponent,
-    AddSectionFormComponent,
+    SectionFormComponent,
+    SectionDetailComponent,
   ],
   imports: [
     BrowserModule,

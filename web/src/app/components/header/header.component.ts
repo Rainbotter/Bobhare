@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @Input() public bookmarks: Section[] = []
 
   public isNewSectionFormOpened: boolean = false
-  public hasSubmitSucceed: boolean = false
 
   private subscriptions: Subscription[] = []
 

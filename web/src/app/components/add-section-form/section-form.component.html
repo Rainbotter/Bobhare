@@ -1,8 +1,8 @@
-<div class="modal fade" data-bs-backdrop="static" id="addSectionModal" tabindex="-1" (hidden.bs.modal)="onHidden()">
+<div class="modal fade" data-bs-backdrop="static" [id]="modalId()" tabindex="-1" (hidden.bs.modal)="onHidden()">
   <button #openAddSectionModalBtn
           class="visually-hidden"
           data-bs-toggle="modal"
-          data-bs-target="#addSectionModal">
+          [attr.data-bs-target]="'#'+modalId()">
   </button>
   <div class="modal-dialog">
     <div class="modal-content">
