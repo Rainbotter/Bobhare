@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { Section } from '../../../models/bookmark.model'
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core'
+import {Section} from '../../../models/bookmark.model'
 
 @Component({
   selector: 'bh-section-detail-header',
@@ -12,16 +12,17 @@ export class SectionDetailHeaderComponent implements OnInit {
   @Output() public onEditSection = new EventEmitter<void>();
   @Output() public onAddGroup = new EventEmitter<void>();
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
   }
 
-  public onClickOnOpenSectionForm (): void {
+  public ngOnInit(): void {
+  }
+
+  public onClickOnOpenSectionForm(): void {
     this.onEditSection.emit();
   }
 
-  public onClickOnAddGroup (): void {
+  public onClickOnAddGroup(): void {
     this.onAddGroup.emit();
   }
 

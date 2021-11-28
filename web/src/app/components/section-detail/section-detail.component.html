@@ -10,14 +10,15 @@
       <div class="card-body">
         <div class="row justify-content-start">
           <div class="col-md-3 col-sm-12 gy-1 gx-1" *ngFor="let group of section?.groups">
-            <bh-group [group]="group"></bh-group>
+            <bh-group-detail [group]="group"></bh-group-detail>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <bh-section-form [sectionToEdit]="section"
-                   (closed)="sectionFormClosed()"
-                   [isOpen]="isEditSectionOpen">
+  <bh-section-form #sectionForm
+                   [sectionToEdit]="section">
   </bh-section-form>
+  <bh-group-form #groupForm>
+  </bh-group-form>
 </div>

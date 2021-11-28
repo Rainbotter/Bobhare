@@ -1,17 +1,19 @@
-import { NgModule } from '@angular/core'
-import { BrowserModule } from '@angular/platform-browser'
+import {NgModule} from '@angular/core'
+import {BrowserModule} from '@angular/platform-browser'
 
-import { AppRoutingModule } from './app-routing.module'
-import { AppComponent } from './app.component'
-import { HomeComponent } from './pages/home/home.component'
-import { HeaderComponent } from './components/header/header.component'
-import { FooterComponent } from './components/footer/footer.component'
-import { HttpClientModule } from '@angular/common/http'
-import { GroupComponent } from './components/group/group.component'
-import { FormsModule } from '@angular/forms'
-import { SectionFormComponent } from './components/add-section-form/section-form.component';
-import { SectionDetailComponent } from './components/section-detail/section-detail.component';
-import { SectionDetailHeaderComponent } from './components/section-detail/section-detail-header/section-detail-header.component'
+import {AppRoutingModule} from './app-routing.module'
+import {AppComponent} from './app.component'
+import {HomeComponent} from './pages/home/home.component'
+import {HeaderComponent} from './components/header/header.component'
+import {FooterComponent} from './components/footer/footer.component'
+import {HttpClientModule} from '@angular/common/http'
+import {FormsModule} from '@angular/forms'
+import {SectionFormComponent} from './components/section-form/section-form.component';
+import {SectionDetailComponent} from './components/section-detail/section-detail.component';
+import {SectionDetailHeaderComponent} from './components/section-detail/section-detail-header/section-detail-header.component';
+import {GroupFormComponent} from './components/group-form/group-form.component';
+import {GroupDetailComponent} from './components/group-detail/group-detail.component';
+import { ModalComponent } from './shared/modal/modal.component'
 
 @NgModule({
   declarations: [
@@ -19,10 +21,12 @@ import { SectionDetailHeaderComponent } from './components/section-detail/sectio
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    GroupComponent,
     SectionFormComponent,
     SectionDetailComponent,
     SectionDetailHeaderComponent,
+    GroupFormComponent,
+    GroupDetailComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,

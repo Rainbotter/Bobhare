@@ -1,0 +1,18 @@
+<bh-modal #modal1
+          (closed)="onClosed()"
+          (submit)="onSubmit($event)"
+          [isLoading]="isLoading"
+          [title]="editMode ? 'Edit section' :'Add section'">
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control" id="floatingInput" name="title"
+           required maxlength="40"
+           placeholder="new section title"
+           [(ngModel)]="newSection.title"
+           [disabled]="isLoading">
+    <div class="invalid-feedback">Please fill out this field.</div>
+    <label for="floatingInput">New section title</label>
+  </div>
+  <div *ngIf="unknownErrorOccurred" class="alert alert-danger" role="alert">
+    An unknown error occurred. Please try again.
+  </div>
+</bh-modal>

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core'
+import {Injectable} from '@angular/core'
 import slugify from 'slugify'
 
 @Injectable({
@@ -6,10 +6,10 @@ import slugify from 'slugify'
 })
 export class StringService {
 
-  constructor () {
+  constructor() {
   }
 
-  public slugify (value: string): string {
+  public slugify(value: string): string {
     return slugify(value, {
       lower: true,
       strict: true,

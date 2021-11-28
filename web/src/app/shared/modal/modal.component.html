@@ -1,0 +1,32 @@
+<div class="modal fade" data-bs-backdrop="static" [id]="modalId()" tabindex="-1" (hidden.bs.modal)="onHidden()">
+  <button #openBtn
+          class="visually-hidden"
+          data-bs-toggle="modal"
+          [attr.data-bs-target]="'#'+modalId()">
+  </button>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form #form="ngForm" (ngSubmit)="onSubmit()" class="was-validated">
+        <div class="modal-header">
+          <h5 class="modal-title">{{title}}</h5>
+        </div>
+        <div class="modal-body">
+          <ng-content></ng-content>
+        </div>
+        <div class="modal-footer">
+          <button #closeBtn type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="dismiss()"
+                  [disabled]="isLoading">
+            Close
+          </button>
+          <button *ngIf="!isLoading" type="submit" class="btn btn-success" [disabled]="form.invalid">
+            Submit
+          </button>
+          <button *ngIf="isLoading" class="btn btn-success" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading...
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
