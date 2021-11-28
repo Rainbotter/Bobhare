@@ -9,7 +9,8 @@ import { Section } from '../../models/bookmark.model'
 export class SectionDetailComponent implements OnInit {
 
   @Input() public section?: Section
-  public isNewSectionFormOpened: boolean = false
+  public isEditSectionOpen: boolean = false
+  public isAddGroupOpen: boolean = false
   public displayEdit: boolean = false
 
   constructor () {
@@ -19,15 +20,15 @@ export class SectionDetailComponent implements OnInit {
   }
 
   public openSectionForm (): void {
-    this.isNewSectionFormOpened = true
+    this.isEditSectionOpen = true
+  }
+
+  public openGroupForm (): void {
+    this.isAddGroupOpen = true
   }
 
   public sectionFormClosed (): void {
-    this.isNewSectionFormOpened = false
-  }
-
-  public setDisplayEdit (value: boolean): void {
-    this.displayEdit = value
+    this.isEditSectionOpen = false
   }
 
 }

@@ -10,7 +10,8 @@ import { HttpClientModule } from '@angular/common/http'
 import { GroupComponent } from './components/group/group.component'
 import { FormsModule } from '@angular/forms'
 import { SectionFormComponent } from './components/add-section-form/section-form.component';
-import { SectionDetailComponent } from './components/section-detail/section-detail.component'
+import { SectionDetailComponent } from './components/section-detail/section-detail.component';
+import { SectionDetailHeaderComponent } from './components/section-detail/section-detail-header/section-detail-header.component'
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SectionDetailComponent } from './components/section-detail/section-deta
     GroupComponent,
     SectionFormComponent,
     SectionDetailComponent,
+    SectionDetailHeaderComponent,
   ],
   imports: [
     BrowserModule,

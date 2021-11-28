@@ -1,0 +1,50 @@
+<div *ngIf="section">
+  <div class="d-none d-lg-block">
+    <div class="dropdown">
+      <button class="btn btn-outline-success btn-lg dropdown-toggle overflow-hidden" type="button"
+              id="section_dropdown"
+              data-bs-toggle="dropdown" aria-expanded="false">
+        {{section.title}}
+      </button>
+      <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end" aria-labelledby="section_dropdown">
+        <li>
+          <a class="dropdown-item" (click)="onClickOnOpenSectionForm()"><i class="bi bi-pencil"></i> Edit section</a>
+        </li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li>
+          <a class="dropdown-item" (click)="onClickOnAddGroup()"><i class="bi bi-plus"></i> Add group</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="d-block d-lg-none">
+    <button class="btn btn-outline-dark btn-lg btn-block w-100 d-flex justify-content-between"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsible"
+            aria-expanded="false"
+            aria-controls="collapsible">
+      <span>{{section.title}}</span>
+      <i class="bi bi-caret-down"></i>
+    </button>
+    <div class="collapse mt-1 w-100" #collapsible id="collapsible">
+      <div class="btn-group w-100" role="group" aria-label="Button group with nested dropdown">
+        <button (click)="onClickOnOpenSectionForm()"
+                type="button"
+                class="btn btn-outline-dark btn-lg d-flex justify-content-between">
+          <span>Edit section</span>
+          <i class="bi bi-pencil"></i>
+        </button>
+        <button (click)="onClickOnAddGroup()"
+                type="button"
+                class="btn btn-outline-dark btn-lg d-flex justify-content-between">
+          <span>Add group</span>
+          <i class="bi bi-plus"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

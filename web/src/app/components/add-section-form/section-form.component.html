@@ -8,7 +8,8 @@
     <div class="modal-content">
       <form #addNewSectionForm="ngForm" (ngSubmit)="onSubmit()" class="was-validated">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add new section</h5>
+          <h5 class="modal-title" *ngIf="!editMode">Add section</h5>
+          <h5 class="modal-title" *ngIf="editMode">Edit section</h5>
         </div>
         <div class="modal-body">
           <div class="form-floating mb-3">

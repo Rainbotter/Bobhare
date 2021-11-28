@@ -1,21 +1,12 @@
 <div *ngIf="section">
   <div class="container-fluid p-0">
     <div class="card">
-      <div class="card-header" (mouseenter)="setDisplayEdit(true)" (mouseleave)="setDisplayEdit(false)">
-        <div>
-          <h2>{{section.title}}
-            <button type="button" class="btn btn-outline-secondary btn-sm d-md"
-                    [class.invisible]="!displayEdit"
-                    (click)="openSectionForm()">
-              <i class="bi bi-pencil"></i>
-            </button>
-            <button type="button" class="btn btn-outline-secondary btn-sm d-md-none d-sm"
-                    (click)="openSectionForm()">
-              <i class="bi bi-pencil"></i>
-            </button>
-          </h2>
-        </div>
-      </div>
+      <h2 class="card-header">
+        <bh-section-detail-header [section]="section"
+                                  (onEditSection)="openSectionForm()"
+                                  (onAddGroup)="openGroupForm()">
+        </bh-section-detail-header>
+      </h2>
       <div class="card-body">
         <div class="row justify-content-start">
           <div class="col-md-3 col-sm-12 gy-1 gx-1" *ngFor="let group of section?.groups">
@@ -27,6 +18,6 @@
   </div>
   <bh-section-form [sectionToEdit]="section"
                    (closed)="sectionFormClosed()"
-                   [isOpen]="isNewSectionFormOpened">
+                   [isOpen]="isEditSectionOpen">
   </bh-section-form>
 </div>
