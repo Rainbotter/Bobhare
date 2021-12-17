@@ -6,3 +6,8 @@ tmp
 runner
 runner-errors.log
 target
+
+node_modules
+dist
+
+db.sqlite3

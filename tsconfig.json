@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es2020",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "sourceMap": false,
+    "outDir": "dist",
+    "removeComments": true,
+    "allowJs": false,
+    "skipLibCheck": false,
+    "strictNullChecks": true
+  },
+  "exclude": [
+    "node_modules",
+    "tst",
+    "src/web"
+  ]
+}

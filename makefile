@@ -11,34 +11,26 @@ clean:
 	@$(MAKE) -s -C web clean
 	@echo "Clean succeed"
 
-dev-dependencies:
-	@echo "Fetching dev dependencies..."
-	@curl -sSfL https://raw.githubusercontent.com/cosmtrek/air/master/install.sh | sh -s
-	@$(MAKE) -s -C . dependencies
-	@echo "Fetch dev dependencies succeed"
-
 dependencies:
 	@echo "Fetching dependencies..."
-	@go get -d ./...
-	@$(MAKE) -s -C web dependencies
+	@npm install
+	@$(MAKE) -s -C src/web dependencies
 	@echo "Fetch dependencies succeed"
 
 build:
 	@echo "Building..."
-	@go build --ldflags '-linkmode external -extldflags "-static"' -o target/bobhare main.go
-	@$(MAKE) -s -C web build
-	@mkdir -p target/web/dist
-	@cp -r web/dist/* target/web/dist/
+	@npm run build
+	@$(MAKE) -s -C src/web build
 	@echo "Build succeed"
 
 run:
 	@$(MAKE) -j2 run-front run-back
 
 run-front:
-	@$(MAKE) -s -C web run
+	@$(MAKE) -s -C src/web run
 
 run-back:
-	./bin/air -c runner.toml
+	@export WEB_APP_PATH=dist/web && npm start
 
 docker:
 	@echo "Building docker image..."
