@@ -140,7 +140,7 @@ export class BookmarkService {
     }
   }
 
-  public addNewSection(section: Section): Observable<Section> {
+  public createSection(section: Section): Observable<Section> {
     this.bookmarks.next([...this.bookmarks.getValue(), section])
     return of(section)
   }

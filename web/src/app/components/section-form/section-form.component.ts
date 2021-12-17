@@ -72,7 +72,7 @@ export class SectionFormComponent implements OnInit {
       title: this.titleControl.value,
       groups: [],
     }
-    this.bookmarkService.addNewSection(tempSection).pipe(first()).subscribe(section => {
+    this.bookmarkService.createSection(tempSection).pipe(first()).subscribe(section => {
       this.isLoading = false
       this.dismiss()
       this.unknownErrorOccurred = false
