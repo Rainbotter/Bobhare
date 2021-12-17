@@ -1,8 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core'
-import {ActivatedRoute} from '@angular/router'
+import {ActivatedRoute, Router} from '@angular/router'
 import {Section} from '../../models/bookmark.model'
 import {BookmarkService} from '../../services/bookmark.service'
 import {Subscription} from 'rxjs'
+import {StringService} from "../../services/string.service";
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription[] = []
 
-  constructor(private route: ActivatedRoute, private bookmarkService: BookmarkService) {
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private bookmarkService: BookmarkService,
+              private stringService: StringService) {
   }
 
   public ngOnInit(): void {
@@ -23,7 +27,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       if (params.section) {
         this.section = this.bookmarkService.getSection(params.section)
       } else {
-        this.section = this.bookmarkService.getSectionAtIndex(0)
+        const firstSection = this.bookmarkService.getSectionAtIndex(0);
+        if (firstSection) {
+          this.router.navigate([`/${this.stringService.slugify(firstSection.title)}`]);
+        }
       }
     }))
   }

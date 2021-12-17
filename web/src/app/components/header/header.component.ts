@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   @Input() public bookmarks: Section[] = []
 
-  @ViewChild('sectionForm', {static: true}) sectionForm?: SectionFormComponent
+  @ViewChild('sectionForm') sectionForm?: SectionFormComponent
 
   private subscriptions: Subscription[] = []
 

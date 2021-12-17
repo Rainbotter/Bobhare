@@ -16,7 +16,7 @@ export class BookmarkService {
     this.loadBookMarks().pipe(first()).subscribe()
   }
 
-  public loadBookMarks(): Observable<Section[]> {
+  private loadBookMarks(): Observable<Section[]> {
     this.bookmarks.next([
       {
         title: 'Section 1',

@@ -4,6 +4,8 @@ import {first} from 'rxjs/operators'
 import {BookmarkService} from '../../services/bookmark.service'
 import {ModalComponent} from "../../shared/modal/modal.component";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
+import {StringService} from "../../services/string.service";
 
 @Component({
   selector: 'bh-section-form',
@@ -16,7 +18,7 @@ export class SectionFormComponent implements OnInit {
   public editMode: boolean = false
 
   @Output() public closed = new EventEmitter<Section>()
-  @ViewChild('modal', {static: true}) modal?: ModalComponent
+  @ViewChild('modal') modal?: ModalComponent
 
   public isLoading: boolean = false
   public unknownErrorOccurred: boolean = false
@@ -25,7 +27,9 @@ export class SectionFormComponent implements OnInit {
   public titleControl: FormControl;
 
   constructor(private bookmarkService: BookmarkService,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private stringService: StringService,
+              private router: Router) {
     this.titleControl = this.fb.control({
       value: '',
       disabled: this.isLoading
@@ -68,10 +72,11 @@ export class SectionFormComponent implements OnInit {
       title: this.titleControl.value,
       groups: [],
     }
-    this.bookmarkService.addNewSection(tempSection).pipe(first()).subscribe(_ => {
+    this.bookmarkService.addNewSection(tempSection).pipe(first()).subscribe(section => {
       this.isLoading = false
       this.dismiss()
       this.unknownErrorOccurred = false
+      this.router.navigate([`/${this.stringService.slugify(section.title)}`]);
     }, error => {
       this.isLoading = false
       if (error) {
@@ -86,13 +91,14 @@ export class SectionFormComponent implements OnInit {
       groups: this._sectionToEdit?.groups || [],
       id: this._sectionToEdit?.id
     }
-    this.bookmarkService.updateSection(tempSection).pipe(first()).subscribe(_ => {
+    this.bookmarkService.updateSection(tempSection).pipe(first()).subscribe(section => {
       this.isLoading = false
       this.dismiss()
       this.unknownErrorOccurred = false
       if (this._sectionToEdit) {
         this._sectionToEdit.title = this.titleControl.value
       }
+      this.router.navigate([`/${this.stringService.slugify(section.title)}`]);
     }, error => {
       this.isLoading = false
       if (error) {
