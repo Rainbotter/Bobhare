@@ -12,8 +12,8 @@ export class SectionDetailComponent implements OnInit {
 
   @Input() public section?: Section
 
-  @ViewChild('sectionForm', {static: true}) sectionForm?: SectionFormComponent
-  @ViewChild('groupForm', {static: true}) groupForm?: GroupFormComponent
+  @ViewChild('sectionForm') sectionForm?: SectionFormComponent
+  @ViewChild('groupForm') groupForm?: GroupFormComponent
 
   public displayEdit: boolean = false
 

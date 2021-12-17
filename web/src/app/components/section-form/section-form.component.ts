@@ -3,6 +3,7 @@ import {Section} from '../../models/bookmark.model'
 import {first} from 'rxjs/operators'
 import {BookmarkService} from '../../services/bookmark.service'
 import {ModalComponent} from "../../shared/modal/modal.component";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'bh-section-form',
@@ -15,15 +16,24 @@ export class SectionFormComponent implements OnInit {
   public editMode: boolean = false
 
   @Output() public closed = new EventEmitter<Section>()
-
-  @ViewChild('modal1', {static: true}) modal?: ModalComponent
-
-  public newSection: Section = this.initSection()
+  @ViewChild('modal', {static: true}) modal?: ModalComponent
 
   public isLoading: boolean = false
   public unknownErrorOccurred: boolean = false
 
-  constructor(private bookmarkService: BookmarkService) {
+  public form: FormGroup;
+  public titleControl: FormControl;
+
+  constructor(private bookmarkService: BookmarkService,
+              private fb: FormBuilder) {
+    this.titleControl = this.fb.control({
+      value: '',
+      disabled: this.isLoading
+    }, [Validators.required]);
+    this.form = this.fb.group({
+      'titleControl': this.titleControl
+    });
+
   }
 
   public ngOnInit(): void {
@@ -33,7 +43,7 @@ export class SectionFormComponent implements OnInit {
   public set sectionToEdit(section: Section) {
     if (section) {
       this._sectionToEdit = section
-      this.newSection = this.initSection(this._sectionToEdit)
+      this.initSection(this._sectionToEdit)
       this.editMode = true
     }
   }
@@ -42,9 +52,8 @@ export class SectionFormComponent implements OnInit {
     this.closed.emit()
   }
 
-  public onSubmit(event: any): void {
-    console.log(event)
-    this.newSection.title = this.newSection.title.trim()
+  public onSubmit(): void {
+    this.titleControl.setValue(this.titleControl.value.trim())
     this.unknownErrorOccurred = false
     this.isLoading = true
     if (this.editMode) {
@@ -55,7 +64,11 @@ export class SectionFormComponent implements OnInit {
   }
 
   private addNewSection(): void {
-    this.bookmarkService.addNewSection(this.newSection).pipe(first()).subscribe(value => {
+    const tempSection: Section = {
+      title: this.titleControl.value,
+      groups: [],
+    }
+    this.bookmarkService.addNewSection(tempSection).pipe(first()).subscribe(_ => {
       this.isLoading = false
       this.dismiss()
       this.unknownErrorOccurred = false
@@ -68,12 +81,17 @@ export class SectionFormComponent implements OnInit {
   }
 
   private updateSection(): void {
-    this.bookmarkService.updateSection(this.newSection).pipe(first()).subscribe(value => {
+    const tempSection: Section = {
+      title: this.titleControl.value,
+      groups: this._sectionToEdit?.groups || [],
+      id: this._sectionToEdit?.id
+    }
+    this.bookmarkService.updateSection(tempSection).pipe(first()).subscribe(_ => {
       this.isLoading = false
       this.dismiss()
       this.unknownErrorOccurred = false
       if (this._sectionToEdit) {
-        this._sectionToEdit.title = this.newSection.title
+        this._sectionToEdit.title = this.titleControl.value
       }
     }, error => {
       this.isLoading = false
@@ -84,19 +102,16 @@ export class SectionFormComponent implements OnInit {
   }
 
   public dismiss(): void {
-    this.modal?.dismiss();
+    this.modal?.dismiss()
   }
 
   public open(): void {
-    this.newSection = this.initSection(this._sectionToEdit)
+    this.initSection(this._sectionToEdit)
     this.modal?.open();
   }
 
-  private initSection(section?: Section): Section {
-    return {
-      title: section?.title || '',
-      groups: []
-    }
+  private initSection(section?: Section): void {
+    this.titleControl?.setValue(section?.title)
   }
 
 }

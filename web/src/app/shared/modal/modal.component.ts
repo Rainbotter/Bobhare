@@ -1,5 +1,5 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {NgForm} from "@angular/forms";
+import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'bh-modal',
@@ -8,19 +8,18 @@ import {NgForm} from "@angular/forms";
 })
 export class ModalComponent implements OnInit {
 
+  @Input() public form: FormGroup = new FormGroup({});
   @Input() public title: string = "";
   @Input() public isLoading: boolean = false
 
   @Output() public closed = new EventEmitter<void>()
-  @Output() public submit = new EventEmitter<void>()
+  @Output() public formSubmit = new EventEmitter<void>()
 
   public r = Math.floor(Math.random() * (999999 - 100000)) + 100000
 
   @ViewChild('openBtn', {static: true}) openAddSectionModalBtn?: ElementRef
 
   @ViewChild('closeBtn', {static: true}) closeModal?: ElementRef
-
-  @ViewChild('form', {static: true}) form?: NgForm
 
   constructor() {
   }
@@ -41,10 +40,8 @@ export class ModalComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    console.log("1")
-    if (this.form?.valid && !this.isLoading) {
-      console.log("2")
-      this.submit.emit();
+    if (this.form && this.form?.valid && !this.isLoading) {
+      this.formSubmit.emit();
     }
   }
 

@@ -7,7 +7,7 @@ import {HomeComponent} from './pages/home/home.component'
 import {HeaderComponent} from './components/header/header.component'
 import {FooterComponent} from './components/footer/footer.component'
 import {HttpClientModule} from '@angular/common/http'
-import {FormsModule} from '@angular/forms'
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {SectionFormComponent} from './components/section-form/section-form.component';
 import {SectionDetailComponent} from './components/section-detail/section-detail.component';
 import {SectionDetailHeaderComponent} from './components/section-detail/section-detail-header/section-detail-header.component';
@@ -32,7 +32,8 @@ import { ModalComponent } from './shared/modal/modal.component'
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

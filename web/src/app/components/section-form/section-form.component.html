@@ -1,14 +1,14 @@
-<bh-modal #modal1
+<bh-modal #modal
           (closed)="onClosed()"
-          (submit)="onSubmit($event)"
+          (formSubmit)="onSubmit()"
+          [form]="form"
           [isLoading]="isLoading"
           [title]="editMode ? 'Edit section' :'Add section'">
   <div class="form-floating mb-3">
     <input type="text" class="form-control" id="floatingInput" name="title"
            required maxlength="40"
            placeholder="new section title"
-           [(ngModel)]="newSection.title"
-           [disabled]="isLoading">
+           [formControl]="titleControl">
     <div class="invalid-feedback">Please fill out this field.</div>
     <label for="floatingInput">New section title</label>
   </div>
