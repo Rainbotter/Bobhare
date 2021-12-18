@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Section} from '../../models/bookmark.model';
 import {BookmarkService} from '../../services/bookmark.service';
 import {Subscription} from 'rxjs';
 import {StringService} from "../../services/string.service";
+import {Section} from "../../models/bookmark.model";
 
 @Component({
   selector: 'app-home',

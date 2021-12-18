@@ -56,7 +56,6 @@ export class Application {
   private configureMiddlewares(): void {
     this.app.use(express.json({limit: '1mb'}));
     this.app.use(express.urlencoded({extended: false}));
-    this.app.use(this.middlewares.logIncomingRequests());
     this.routes.setupRoutes(this.app);
     this.app.use(this.middlewares.handleUncaughtExceptions());
     this.app.use(this.middlewares.handleUnknownRoutes());

@@ -1,16 +1,16 @@
-import {Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {Section} from '../../models/bookmark.model';
+import {Component, Input, OnDestroy, ViewChild} from '@angular/core';
 import {StringService} from '../../services/string.service';
 import {BookmarkService} from '../../services/bookmark.service';
 import {Subscription} from 'rxjs';
 import {SectionFormComponent} from "../section-form/section-form.component";
+import {Section} from "../../models/bookmark.model";
 
 @Component({
   selector: 'bh-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnDestroy {
 
   @Input() public bookmarks: Section[] = [];
 
@@ -20,9 +20,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(private stringService: StringService, private bookmarkService: BookmarkService) {
     this.subscriptions.push(this.bookmarkService.bookmarks.subscribe(value => this.bookmarks = value));
-  }
-
-  public ngOnInit(): void {
   }
 
   public ngOnDestroy() {

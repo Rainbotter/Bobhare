@@ -49,9 +49,8 @@ export class Middlewares {
     };
   }
 
-  public logIncomingRequests(): RequestHandler {
+  public logIncomingRequest(): RequestHandler {
     return (req, res, next) => {
-
       this.logger.info(`↓ ${req.method} ${req.originalUrl}`);
       next();
     };

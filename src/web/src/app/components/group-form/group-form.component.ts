@@ -1,26 +1,18 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {Group, Section} from "../../models/bookmark.model";
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {ModalComponent} from "../../shared/modal/modal.component";
+import {Group, Section} from "../../models/bookmark.model";
 
 @Component({
   selector: 'bh-group-form',
   templateUrl: './group-form.component.html',
   styleUrls: ['./group-form.component.scss']
 })
-export class GroupFormComponent implements OnInit {
+export class GroupFormComponent {
 
   @Input() public group?: Group;
   @Output() public closed = new EventEmitter<Section>();
 
   @ViewChild('modal', {static: true}) modal?: ModalComponent;
-
-  public isEditModalOpen: boolean = false;
-
-  constructor() {
-  }
-
-  public ngOnInit(): void {
-  }
 
   public onClose(): void {
     this.closed.emit();

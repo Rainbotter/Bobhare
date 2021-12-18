@@ -11,6 +11,8 @@ export class Routes {
 
   private logger: Logger = LoggerConfig.getLogger("Routes");
 
+  private prefix: string = SETTINGS.APPLICATION.BACKEND_URL_PREFIX;
+
   constructor(private middlewares: Middlewares,
               private webController: WebController) {
   }
@@ -22,11 +24,11 @@ export class Routes {
 
   private setupWebAppRoutes(app: Application): void {
     app.get('*.*', express.static(SETTINGS.APPLICATION.WEB_APP_PATH, {maxAge: '1y'}));
-    app.get('/*', (req, res, next) => this.webController.serveWebApp(req, res).catch(reason => next(reason)));
+    app.get('/*', this.middlewares.logIncomingRequest(), (req, res, next) => this.webController.serveWebApp(req, res).catch(reason => next(reason)));
   }
 
   private setupApiRoutes(app: Application): void {
-
+    app.get(`${this.prefix}/sections`);
   }
 
 }

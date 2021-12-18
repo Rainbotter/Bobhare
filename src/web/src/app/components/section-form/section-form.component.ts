@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {Section} from '../../models/bookmark.model';
 import {first} from 'rxjs/operators';
 import {BookmarkService} from '../../services/bookmark.service';
@@ -12,7 +12,7 @@ import {StringService} from "../../services/string.service";
   templateUrl: './section-form.component.html',
   styleUrls: ['./section-form.component.scss']
 })
-export class SectionFormComponent implements OnInit {
+export class SectionFormComponent {
 
   private _sectionToEdit?: Section;
   public editMode: boolean = false;
@@ -38,9 +38,6 @@ export class SectionFormComponent implements OnInit {
       'titleControl': this.titleControl
     });
 
-  }
-
-  public ngOnInit(): void {
   }
 
   @Input()
@@ -89,7 +86,7 @@ export class SectionFormComponent implements OnInit {
     const tempSection: Section = {
       title: this.titleControl.value,
       groups: this._sectionToEdit?.groups || [],
-      id: this._sectionToEdit?.id
+      uuid: this._sectionToEdit?.uuid
     };
     this.bookmarkService.updateSection(tempSection).pipe(first()).subscribe(section => {
       this.isLoading = false;

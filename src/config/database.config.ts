@@ -4,6 +4,9 @@ import {Logger} from "winston";
 import {SETTINGS} from "./settings.config";
 import {createConnection, getConnection} from "typeorm";
 import {SqliteConnectionOptions} from "typeorm/driver/sqlite/SqliteConnectionOptions";
+import {Section} from "../models/dao/section.dao";
+import {Group} from "../models/dao/group.dao";
+import {Bookmark} from "../models/dao/bookmark.dao";
 
 
 @singleton()
@@ -16,8 +19,12 @@ export class DatabaseConfig {
     const defaultDatabaseOptions: SqliteConnectionOptions = {
       type: "sqlite",
       database: SETTINGS.DATABASE.PATH,
-      synchronize: false,
-      entities: []
+      synchronize: true,
+      entities: [
+        Section,
+        Group,
+        Bookmark
+      ]
     };
 
     this.logger.info("Connecting to database at path " + SETTINGS.DATABASE.PATH);

@@ -3,7 +3,6 @@ import {Logger} from "winston";
 import {singleton} from "tsyringe";
 import {LoggerConfig} from "../config/logger.config";
 import {ErrorResponse} from "../models/dto/error.responses";
-import {SETTINGS} from "../config/settings.config";
 
 @singleton()
 export class ResponseHelper {
@@ -18,15 +17,17 @@ export class ResponseHelper {
     this._logger.info(`↑ ${req.method} ${req.originalUrl} → ${res.statusCode}`);
   }
 
-  public ok(req: Request, res: Response, value?: unknown): void {
-    value = value || {};
+  public staticFiles(req: Request, res: Response): void {
+    this._logger.info(`↑ ${req.method} ${req.originalUrl} → ${res.statusCode}`);
+  }
+
+  public ok<T>(req: Request, res: Response, value: T): void {
     res.status(200);
     res.json(value);
     this._logger.info(`↑ ${req.method} ${req.originalUrl} → ${res.statusCode}`);
   }
 
-  public created(req: Request, res: Response, value?: unknown): void {
-    value = value || {};
+  public created<T>(req: Request, res: Response, value: T): void {
     res.status(201);
     res.json(value);
     this._logger.info(`↑ ${req.method} ${req.originalUrl} → ${res.statusCode}`);

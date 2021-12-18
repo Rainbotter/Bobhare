@@ -1,24 +1,19 @@
 export interface Section {
-  id?: string,
-  title: string,
+  uuid?: string;
+  title: string;
   groups: Group[];
 }
 
 export interface Group {
-  id?: string,
+  uuid?: string;
   title: string;
   color: string;
   bookmarks: Bookmark[];
 }
 
 export interface Bookmark {
-  id?: string,
+  uuid?: string;
   title: string;
-  link: Link;
-}
-
-export interface Link {
   url: string;
-  text: string;
   faviconUrl?: string;
 }

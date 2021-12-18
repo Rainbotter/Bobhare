@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable, of} from 'rxjs';
-import {Section} from '../models/bookmark.model';
 import {first} from 'rxjs/operators';
 import {StringService} from './string.service';
 import {HttpClient} from '@angular/common/http';
+import {Section} from "../models/bookmark.model";
 
 @Injectable({
   providedIn: 'root'
@@ -19,105 +19,91 @@ export class BookmarkService {
   private loadBookMarks(): Observable<Section[]> {
     this.bookmarks.next([
       {
-        title: 'Section 1',
+        uuid: "0",
+        title: 'Section 0',
         groups: [
           {
-            title: 'Group 1',
+            uuid: "10",
+            title: 'Group 10',
             color: '#000000',
             bookmarks: [
               {
+                uuid: "100",
                 title: 'Bookmark 1q sdfqsd ffds sdfq s dqf sfdqsdf sdfq sfdqs dqfsqdfqsfdsfd ',
-                link: {
-                  'text': 'oui',
-                  'url': 'https://www.youtube.com'
-                }
+                url: 'https://www.youtube.com'
               },
               {
+                uuid: "101",
                 title: 'Bookmark sqdf',
-                link: {
-                  'text': 'oui',
-                  'url': 'https://www.youtube.com'
-                }
+                url: 'https://www.youtube.com'
               }
             ]
           },
           {
-            title: 'Group 1',
+            uuid: "11",
+            title: 'Group 11',
             color: '#444444',
             bookmarks: [
               {
+                uuid: "110",
                 title: 'Bookmark 1q sdfqsd ffds sdfq s dqf sfdqsdf sdfq sfdqs dqfsqdfqsfdsfd ',
-                link: {
-                  'text': 'oui',
-                  'url': 'https://www.youtube.com'
-                }
+                url: 'https://www.youtube.com'
               },
               {
+                uuid: "111",
                 title: 'Bookmark sqdf',
-                link: {
-                  'text': 'oui',
-                  'url': 'https://www.youtube.com'
-                }
+                url: 'https://www.youtube.com'
               }
             ]
           },
           {
-            title: 'Group 1',
+            uuid: "12",
+            title: 'Group 12',
             color: '#AAAAAA',
             bookmarks: [
               {
+                uuid: "120",
                 title: 'Bookmark 1q sdfqsd ffds sdfq s dqf sfdqsdf sdfq sfdqs dqfsqdfqsfdsfd ',
-                link: {
-                  'text': 'oui',
-                  'url': 'https://www.youtube.com'
-                }
+                url: 'https://www.youtube.com'
               },
               {
+                uuid: "121",
                 title: 'Bookmark sqdf',
-                link: {
-                  'text': 'oui',
-                  'url': 'https://www.youtube.com'
-                }
+                url: 'https://www.youtube.com'
               }
             ]
           },
           {
-            title: 'Group 1',
+            uuid: "13",
+            title: 'Group 13',
             color: '#F4A302',
             bookmarks: [
               {
+                uuid: "130",
                 title: 'Bookmark 1q sdfqsd ffds sdfq s dqf sfdqsdf sdfq sfdqs dqfsqdfqsfdsfd ',
-                link: {
-                  'text': 'oui',
-                  'url': 'https://www.youtube.com'
-                }
+                url: 'https://www.youtube.com'
               },
               {
+                uuid: "131",
                 title: 'Bookmark sqdf',
-                link: {
-                  'text': 'oui',
-                  'url': 'https://www.youtube.com'
-                }
+                url: 'https://www.youtube.com'
               }
             ]
           },
           {
-            title: 'Group 1',
+            uuid: "14",
+            title: 'Group 14',
             color: '#FFFFFF',
             bookmarks: [
               {
+                uuid: "140",
                 title: 'Bookmark 1q sdfqsd ffds sdfq s dqf sfdqsdf sdfq sfdqs dqfsqdfqsfdsfd ',
-                link: {
-                  'text': 'oui',
-                  'url': 'https://www.youtube.com'
-                }
+                url: 'https://www.youtube.com'
               },
               {
+                uuid: "141",
                 title: 'Bookmark sqdf',
-                link: {
-                  'text': 'oui',
-                  'url': 'https://www.youtube.com'
-                }
+                url: 'https://www.youtube.com'
               }
             ]
           },
