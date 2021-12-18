@@ -1,12 +1,16 @@
-FROM alpine
+FROM node:16-alpine
 
-# Base config
 RUN mkdir /app
 RUN mkdir /data
 WORKDIR /app
 
-COPY target .
-RUN chmod -R +x bobhare
+COPY dist /app
+COPY package.json /app
+COPY LICENSE /app
 
-CMD ./bobhare
-EXPOSE 9000
+RUN npm install
+
+ENV DATABASE_PATH /data/db.sqlite3
+
+CMD node server.js
+EXPOSE 3000

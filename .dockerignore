@@ -4,3 +4,5 @@ controllers
 models
 web
 bin
+
+dist/db.sqlite3
