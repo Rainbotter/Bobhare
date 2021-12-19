@@ -12,7 +12,7 @@
             {{section.title}}
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="bookmarks.length > 0">
           <button class="btn btn-success" (click)="openNewSectionForm()"><i class="bi bi-plus"></i></button>
         </li>
       </ul>

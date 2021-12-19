@@ -1,8 +1,8 @@
 import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
-import {Group} from "./group.dao";
+import {GroupDao} from "./group.dao";
 
 @Entity({name: "section"})
-export class Section {
+export class SectionDao {
 
   @PrimaryGeneratedColumn("increment")
   id: number;
@@ -13,7 +13,7 @@ export class Section {
   @Column({name: "title", length: 255})
   title: string;
 
-  @OneToMany(() => Group, object => object.id)
-  groups: Group[];
+  @OneToMany(() => GroupDao, object => object.id)
+  groups: GroupDao[];
 
 }

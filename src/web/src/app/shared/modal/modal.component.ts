@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {FormGroup} from "@angular/forms";
 
 @Component({
@@ -6,7 +6,7 @@ import {FormGroup} from "@angular/forms";
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss']
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent {
 
   @Input() public form: FormGroup = new FormGroup({});
   @Input() public title: string = "";
@@ -19,13 +19,7 @@ export class ModalComponent implements OnInit {
 
   @ViewChild('openBtn', {static: true}) openAddSectionModalBtn?: ElementRef;
 
-  @ViewChild('closeBtn', {static: true}) closeModal?: ElementRef;
-
-  constructor() {
-  }
-
-  public ngOnInit(): void {
-  }
+  @ViewChild('forceCloseBtn', {static: true}) closeModal?: ElementRef;
 
   public modalId(): string {
     return 'addSectionModal' + this.r;

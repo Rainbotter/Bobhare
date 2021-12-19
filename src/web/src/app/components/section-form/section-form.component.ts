@@ -1,11 +1,11 @@
 import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {Section} from '../../models/bookmark.model';
 import {first} from 'rxjs/operators';
 import {BookmarkService} from '../../services/bookmark.service';
 import {ModalComponent} from "../../shared/modal/modal.component";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {StringService} from "../../services/string.service";
+import { Section } from '../../../../../models/dto/bookmark.model';
 
 @Component({
   selector: 'bh-section-form',

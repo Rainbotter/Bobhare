@@ -5,6 +5,7 @@ import {LoggerConfig} from "./logger.config";
 import {Middlewares} from "./middlewares.config";
 import {WebController} from "../controllers/web.controller";
 import {SETTINGS} from "./settings.config";
+import {BookmarkController} from "../controllers/bookmark.controller";
 
 @singleton()
 export class Routes {
@@ -14,7 +15,8 @@ export class Routes {
   private prefix: string = SETTINGS.APPLICATION.BACKEND_URL_PREFIX;
 
   constructor(private middlewares: Middlewares,
-              private webController: WebController) {
+              private webController: WebController,
+              private bookmarkController: BookmarkController) {
   }
 
   public setupRoutes(app: Application): void {
@@ -28,7 +30,8 @@ export class Routes {
   }
 
   private setupApiRoutes(app: Application): void {
-    app.get(`${this.prefix}/sections`);
+    app.get(`${this.prefix}/sections`, this.middlewares.logIncomingRequest(), (req, res, next) => this.bookmarkController.getSections(req, res).catch(reason => next(reason)));
+    app.post(`${this.prefix}/sections`, this.middlewares.logIncomingRequest(), (req, res, next) => this.bookmarkController.postSection(req, res).catch(reason => next(reason)));
   }
 
 }

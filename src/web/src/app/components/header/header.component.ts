@@ -3,7 +3,7 @@ import {StringService} from '../../services/string.service';
 import {BookmarkService} from '../../services/bookmark.service';
 import {Subscription} from 'rxjs';
 import {SectionFormComponent} from "../section-form/section-form.component";
-import {Section} from "../../models/bookmark.model";
+import {Section} from "../../../../../models/dto/bookmark.model";
 
 @Component({
   selector: 'bh-header',
@@ -19,7 +19,7 @@ export class HeaderComponent implements OnDestroy {
   private subscriptions: Subscription[] = [];
 
   constructor(private stringService: StringService, private bookmarkService: BookmarkService) {
-    this.subscriptions.push(this.bookmarkService.bookmarks.subscribe(value => this.bookmarks = value));
+    this.subscriptions.push(this.bookmarkService.sections.subscribe(value => this.bookmarks = value));
   }
 
   public ngOnDestroy() {

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Section} from "../../../models/bookmark.model";
+import {Section} from "../../../../../../models/dto/bookmark.model";
 
 @Component({
   selector: 'bh-section-detail-header',

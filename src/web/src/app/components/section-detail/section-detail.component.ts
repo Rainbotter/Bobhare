@@ -1,7 +1,7 @@
 import {Component, Input, ViewChild} from '@angular/core';
 import {SectionFormComponent} from "../section-form/section-form.component";
 import {GroupFormComponent} from "../group-form/group-form.component";
-import {Section} from "../../models/bookmark.model";
+import {Section} from "../../../../../models/dto/bookmark.model";
 
 @Component({
   selector: 'bh-section-detail',

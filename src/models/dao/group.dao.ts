@@ -1,8 +1,8 @@
 import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
-import {Bookmark} from "./bookmark.dao";
+import {BookmarkDao} from "./bookmark.dao";
 
 @Entity({name: "group"})
-export class Group {
+export class GroupDao {
 
   @PrimaryGeneratedColumn("increment")
   id: number;
@@ -16,7 +16,7 @@ export class Group {
   @Column({name: "color", length: 255})
   color: string;
 
-  @OneToMany(() => Bookmark, object => object.id)
-  bookmarks: Bookmark[];
+  @OneToMany(() => BookmarkDao, object => object.id)
+  bookmarks: BookmarkDao[];
 
 }

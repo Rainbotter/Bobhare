@@ -1,7 +1,7 @@
 import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 
 @Entity({name: "bookmark"})
-export class Bookmark {
+export class BookmarkDao {
 
   @PrimaryGeneratedColumn("increment")
   id: number;

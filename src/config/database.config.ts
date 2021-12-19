@@ -4,10 +4,9 @@ import {Logger} from "winston";
 import {SETTINGS} from "./settings.config";
 import {createConnection, getConnection} from "typeorm";
 import {SqliteConnectionOptions} from "typeorm/driver/sqlite/SqliteConnectionOptions";
-import {Section} from "../models/dao/section.dao";
-import {Group} from "../models/dao/group.dao";
-import {Bookmark} from "../models/dao/bookmark.dao";
-
+import {SectionDao} from "../models/dao/section.dao";
+import {GroupDao} from "../models/dao/group.dao";
+import {BookmarkDao} from "../models/dao/bookmark.dao";
 
 @singleton()
 export class DatabaseConfig {
@@ -21,16 +20,16 @@ export class DatabaseConfig {
       database: SETTINGS.DATABASE.PATH,
       synchronize: true,
       entities: [
-        Section,
-        Group,
-        Bookmark
+        SectionDao,
+        GroupDao,
+        BookmarkDao
       ]
     };
 
     this.logger.info("Connecting to database at path " + SETTINGS.DATABASE.PATH);
 
     return createConnection(defaultDatabaseOptions)
-      .then(value => {
+      .then(_ => {
         this.logger.info("Connected to Database");
       }).catch(reason => {
         this.logger.error("Connection to the Database failed : " + reason);

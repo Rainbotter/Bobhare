@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {ModalComponent} from "../../shared/modal/modal.component";
-import {Group, Section} from "../../models/bookmark.model";
+import {Group, Section} from "../../../../../models/dto/bookmark.model";
 
 @Component({
   selector: 'bh-group-form',

@@ -1,4 +1,2 @@
 <bh-section-detail *ngIf="section" [section]="section"></bh-section-detail>
-<div *ngIf="!section">
-  No section to be found
-</div>
+<bh-section-empty *ngIf="!section"></bh-section-empty>
