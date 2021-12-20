@@ -28,7 +28,7 @@ export class BookmarkController extends Controller {
   public async postSection(req: Request, res: Response): Promise<void> {
     const request: PostSectionRequest = await this.postSectionValidator.validate(req);
     const section: SectionDao = await this.bookmarkService.createSection(request.title);
-    this.responseHelper.ok<Section>(req, res, toSectionResponse(section));
+    this.responseHelper.created<Section>(req, res, toSectionResponse(section));
   }
 
 }

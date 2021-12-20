@@ -24,7 +24,6 @@ export class Middlewares {
 
   public handleUncaughtExceptions(): ErrorRequestHandler {
     return (error, req, res, _) => {
-      this.logger.error(error.stack);
       if (error && error.name) {
         switch (error.name) {
           case Errors.NOT_FOUND:
@@ -38,12 +37,14 @@ export class Middlewares {
             this.responsesHelper.badRequest(req, res, error);
             break;
           default:
+            this.logger.error(error.stack);
             this.responsesHelper.internalError(req, res, error);
         }
       } else {
         if (!error) {
           error = new Error("Unknown event");
         }
+        this.logger.error(error.stack);
         this.responsesHelper.internalError(req, res, error);
       }
     };
