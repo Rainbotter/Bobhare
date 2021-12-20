@@ -30,12 +30,12 @@ run-front:
 	@$(MAKE) -s -C src/web run
 
 run-back:
-	@export WEB_APP_PATH=dist/web && npm start
+	@export WEB_APP_PATH=dist/web && mkdir -p target && export DATABASE_PATH=target/local_db.sqlite3 && npm start
 
 docker:
 	@echo "Building docker image..."
 	@docker --version
-	@docker build -t rainbowloutre/bobhare:latest -t rainbowloutre/bobhare:$(VERSION) .
+	@dockesr build -t rainbowloutre/bobhare:latest -t rainbowloutre/bobhare:$(VERSION) .
 	@echo "Build docker image succeed"
 
 docker-run:

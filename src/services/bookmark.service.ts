@@ -3,7 +3,7 @@ import {Logger} from "winston";
 import {injectable} from "tsyringe";
 import {SectionDao} from "../models/dao/section.dao";
 import {getRepository} from "typeorm";
-import {randomUUID} from "crypto";
+import {v4 as uuidv4} from 'uuid';
 
 @injectable()
 export class BookmarkService {
@@ -17,7 +17,7 @@ export class BookmarkService {
   public async createSection(title: string): Promise<SectionDao> {
     const newSection: SectionDao = new SectionDao();
     newSection.title = title;
-    newSection.uuid = randomUUID();
+    newSection.uuid = uuidv4();
     newSection.groups = [];
     return getRepository(SectionDao).save(newSection);
   }
