@@ -32,6 +32,7 @@ export class Routes {
   private setupApiRoutes(app: Application): void {
     app.get(`${this.prefix}/sections`, this.middlewares.logIncomingRequest(), (req, res, next) => this.bookmarkController.getSections(req, res).catch(reason => next(reason)));
     app.post(`${this.prefix}/sections`, this.middlewares.logIncomingRequest(), (req, res, next) => this.bookmarkController.postSection(req, res).catch(reason => next(reason)));
+    app.put(`${this.prefix}/sections/:uuid`, this.middlewares.logIncomingRequest(), (req, res, next) => this.bookmarkController.putSection(req, res).catch(reason => next(reason)));
   }
 
 }

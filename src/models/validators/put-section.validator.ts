@@ -1,10 +1,10 @@
 import { InputValidator } from './input.validator';
 import { autoInjectable } from 'tsyringe';
 
-const validatorName = 'PostSectionValidator';
+const validatorName = 'PutSectionValidator';
 
 @autoInjectable()
-export class PostSectionValidator extends InputValidator<PostSectionRequest> {
+export class PutSectionValidator extends InputValidator<PutSectionRequest> {
   constructor () {
     super({
       $id: validatorName,
@@ -13,7 +13,11 @@ export class PostSectionValidator extends InputValidator<PostSectionRequest> {
         title: {
           type: 'string',
           nullable: false
-        }
+        },
+        uuid: {
+          type: 'string',
+          nullable: false
+        },
       },
       required: ['title'],
       additionalProperties: false
@@ -22,6 +26,7 @@ export class PostSectionValidator extends InputValidator<PostSectionRequest> {
   }
 }
 
-export interface PostSectionRequest {
+export interface PutSectionRequest {
+  uuid: string;
   title: string;
 }
