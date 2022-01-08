@@ -17,10 +17,6 @@ export class ResponseHelper {
     this._logger.info(`↑ ${req.method} ${req.originalUrl} → ${res.statusCode}`);
   }
 
-  public staticFiles(req: Request, res: Response): void {
-    this._logger.info(`↑ ${req.method} ${req.originalUrl} → ${res.statusCode}`);
-  }
-
   public ok<T>(req: Request, res: Response, value: T): void {
     res.status(200);
     res.json(value);

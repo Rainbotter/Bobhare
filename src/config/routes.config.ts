@@ -14,7 +14,7 @@ export class Routes {
 
   private prefix: string = SETTINGS.APPLICATION.BACKEND_URL_PREFIX;
 
-  constructor(private middlewares: Middlewares,
+  constructor(private m: Middlewares,
               private webController: WebController,
               private bookmarkController: BookmarkController) {
   }
@@ -26,13 +26,13 @@ export class Routes {
 
   private setupWebAppRoutes(app: Application): void {
     app.get('*.*', express.static(SETTINGS.APPLICATION.WEB_APP_PATH, {maxAge: '1y'}));
-    app.get('/*', this.middlewares.logIncomingRequest(), (req, res, next) => this.webController.serveWebApp(req, res).catch(reason => next(reason)));
+    app.get('/*', this.m.logIncomingRequest(), (req, res, next) => this.webController.serveWebApp(req, res).catch(reason => next(reason)));
   }
 
   private setupApiRoutes(app: Application): void {
-    app.get(`${this.prefix}/sections`, this.middlewares.logIncomingRequest(), (req, res, next) => this.bookmarkController.getSections(req, res).catch(reason => next(reason)));
-    app.post(`${this.prefix}/sections`, this.middlewares.logIncomingRequest(), (req, res, next) => this.bookmarkController.postSection(req, res).catch(reason => next(reason)));
-    app.put(`${this.prefix}/sections/:uuid`, this.middlewares.logIncomingRequest(), (req, res, next) => this.bookmarkController.putSection(req, res).catch(reason => next(reason)));
+    app.get(`${this.prefix}/sections`, this.m.logIncomingRequest(), (req, res, next) => this.bookmarkController.getSections(req, res).catch(reason => next(reason)));
+    app.post(`${this.prefix}/sections`, this.m.logIncomingRequest(), (req, res, next) => this.bookmarkController.postSection(req, res).catch(reason => next(reason)));
+    app.put(`${this.prefix}/sections/:uuid`, this.m.logIncomingRequest(), (req, res, next) => this.bookmarkController.putSection(req, res).catch(reason => next(reason)));
   }
 
 }

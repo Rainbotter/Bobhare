@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import { Group } from '../../../../../models/dto/bookmark.model';
+import {Group} from '../../../../../models/dto/bookmark.model';
 
 @Component({
   selector: 'bh-group-detail',

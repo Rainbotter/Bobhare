@@ -1,11 +1,10 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { first } from 'rxjs/operators';
-import { BookmarkService } from '../../services/bookmark.service';
-import { ModalComponent } from '../../shared/modal/modal.component';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { StringService } from '../../services/string.service';
-import { Section } from '../../../../../models/dto/bookmark.model';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {first} from 'rxjs/operators';
+import {BookmarkService} from '../../services/bookmark.service';
+import {ModalComponent} from '../../shared/modal/modal.component';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {Section} from '../../../../../models/dto/bookmark.model';
 
 @Component({
   selector: 'bh-section-form',
@@ -26,10 +25,9 @@ export class SectionFormComponent {
   public form: FormGroup;
   public titleControl: FormControl;
 
-  constructor (private bookmarkService: BookmarkService,
-    private fb: FormBuilder,
-    private stringService: StringService,
-    private router: Router) {
+  constructor(private bookmarkService: BookmarkService,
+              private fb: FormBuilder,
+              private router: Router) {
     this.titleControl = this.fb.control({
       value: '',
       disabled: this.isLoading
@@ -41,7 +39,7 @@ export class SectionFormComponent {
   }
 
   @Input()
-  public set sectionToEdit (section: Section) {
+  public set sectionToEdit(section: Section) {
     if (section) {
       this._sectionToEdit = section;
       this.initSection(this._sectionToEdit);
@@ -49,11 +47,11 @@ export class SectionFormComponent {
     }
   }
 
-  public onClosed (): void {
+  public onClosed(): void {
     this.closed.emit();
   }
 
-  public onSubmit (): void {
+  public onSubmit(): void {
     this.titleControl.setValue(this.titleControl.value.trim());
     this.unknownErrorOccurred = false;
     this.isLoading = true;
@@ -64,7 +62,7 @@ export class SectionFormComponent {
     }
   }
 
-  private addNewSection (): void {
+  private addNewSection(): void {
     this.bookmarkService.createSection(this.titleControl.value).pipe(first()).subscribe(section => {
       this.handleSuccessSectionSubmit(section);
     }, error => {
@@ -75,7 +73,7 @@ export class SectionFormComponent {
     });
   }
 
-  private updateSection (): void {
+  private updateSection(): void {
     if (this._sectionToEdit && this._sectionToEdit.uuid) {
       this.bookmarkService.updateSection(this._sectionToEdit.uuid, this.titleControl.value).pipe(first()).subscribe(section => {
         this.handleSuccessSectionSubmit(section);
@@ -90,23 +88,23 @@ export class SectionFormComponent {
     }
   }
 
-  private handleSuccessSectionSubmit (section: Section): void {
+  private handleSuccessSectionSubmit(section: Section): void {
     this.isLoading = false;
     this.dismiss();
     this.unknownErrorOccurred = false;
-    this.router.navigate([`/${this.stringService.slugify(section.title)}`]);
+    this.router.navigate([`/${section.uuid}`]);
   }
 
-  public dismiss (): void {
+  public dismiss(): void {
     this.modal?.dismiss();
   }
 
-  public open (): void {
+  public open(): void {
     this.initSection(this._sectionToEdit);
     this.modal?.open();
   }
 
-  private initSection (section?: Section): void {
+  private initSection(section?: Section): void {
     this.titleControl?.setValue(section?.title);
   }
 

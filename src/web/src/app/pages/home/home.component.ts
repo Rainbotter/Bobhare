@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BookmarkService} from '../../services/bookmark.service';
 import {Subscription} from 'rxjs';
-import {StringService} from "../../services/string.service";
 import {Section} from "../../../../../models/dto/bookmark.model";
 import {first} from "rxjs/operators";
 
@@ -13,15 +12,14 @@ import {first} from "rxjs/operators";
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  private sectionTitleToDisplay: string = "";
+  private sectionUuidToDisplay: string = "";
   public section?: Section;
 
   private subscriptions: Subscription[] = [];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private bookmarkService: BookmarkService,
-              private stringService: StringService) {
+              private bookmarkService: BookmarkService) {
   }
 
   public ngOnInit(): void {
@@ -30,15 +28,15 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.subscriptions.push(this.route.params.subscribe(params => {
       if (params.section) {
-        this.sectionTitleToDisplay = params.section;
+        this.sectionUuidToDisplay = params.section;
       }
       this.fetchSectionToDisplay();
     }));
   }
 
   private fetchSectionToDisplay(): void {
-    if (this.sectionTitleToDisplay) {
-      this.bookmarkService.getSection(this.sectionTitleToDisplay)
+    if (this.sectionUuidToDisplay) {
+      this.bookmarkService.getSection(this.sectionUuidToDisplay)
         .pipe(first())
         .subscribe(value => {
           if (value) {
@@ -50,7 +48,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     } else {
       const firstSection = this.bookmarkService.getSectionAtIndex(0);
       if (firstSection) {
-        this.router.navigate([`/${this.stringService.slugify(firstSection.title)}`]);
+        this.router.navigate([`/${firstSection.uuid}`]);
       }
     }
   }

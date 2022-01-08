@@ -1,5 +1,4 @@
 import {Component, Input, OnDestroy, ViewChild} from '@angular/core';
-import {StringService} from '../../services/string.service';
 import {BookmarkService} from '../../services/bookmark.service';
 import {Subscription} from 'rxjs';
 import {SectionFormComponent} from "../section-form/section-form.component";
@@ -18,16 +17,12 @@ export class HeaderComponent implements OnDestroy {
 
   private subscriptions: Subscription[] = [];
 
-  constructor(private stringService: StringService, private bookmarkService: BookmarkService) {
+  constructor(private bookmarkService: BookmarkService) {
     this.subscriptions.push(this.bookmarkService.sections.subscribe(value => this.bookmarks = value));
   }
 
   public ngOnDestroy() {
     this.subscriptions.forEach(value => value.unsubscribe());
-  }
-
-  public slugify(value: string): string {
-    return this.stringService.slugify(value);
   }
 
   public openNewSectionForm(): void {
