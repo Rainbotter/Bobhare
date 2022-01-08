@@ -10,10 +10,15 @@ export class SectionDetailHeaderComponent {
 
   @Input() public section?: Section;
   @Output() public onEditSection = new EventEmitter<void>();
+  @Output() public onDeleteSection = new EventEmitter<void>();
   @Output() public onAddGroup = new EventEmitter<void>();
 
   public onClickOnOpenSectionForm(): void {
     this.onEditSection.emit();
+  }
+
+  public onClickOnDeleteSection(): void {
+    this.onDeleteSection.emit();
   }
 
   public onClickOnAddGroup(): void {

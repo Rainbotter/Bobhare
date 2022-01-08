@@ -92,7 +92,7 @@ export class SectionFormComponent {
     this.isLoading = false;
     this.dismiss();
     this.unknownErrorOccurred = false;
-    this.router.navigate([`/${section.uuid}`]);
+    this.router.navigate([`/sections/${section.uuid}`]);
   }
 
   public dismiss(): void {

@@ -4,7 +4,8 @@
       <h2 class="card-header">
         <bh-section-detail-header [section]="section"
                                   (onEditSection)="openSectionForm()"
-                                  (onAddGroup)="openGroupForm()">
+                                  (onAddGroup)="openGroupForm()"
+                                  (onDeleteSection)="openDeleteSectionForm()">
         </bh-section-detail-header>
       </h2>
       <div class="card-body">
@@ -21,4 +22,7 @@
   </bh-section-form>
   <bh-group-form #groupForm>
   </bh-group-form>
+  <bh-section-delete #deleteSectionForm
+                     [sectionUuid]="section.uuid">
+  </bh-section-delete>
 </div>

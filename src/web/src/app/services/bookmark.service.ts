@@ -62,7 +62,18 @@ export class BookmarkService {
       .pipe(
         first(),
         tap(sectionFromBackend => {
-          this.sections.next([...this.sections.value.filter(section => section.uuid != sectionUuid), sectionFromBackend]);
+          this.sections.next([...this.sections.value.filter(section => section.uuid !== sectionUuid), sectionFromBackend]);
+        })
+      );
+  }
+
+  public deleteSection(sectionUuid: string): Observable<void> {
+
+    return this.httpClient.delete<void>(this.urlService.getDeleteSectionsUrls(sectionUuid))
+      .pipe(
+        first(),
+        tap(sectionFromBackend => {
+          this.sections.next([...this.sections.value.filter(section => section.uuid !== sectionUuid)]);
         })
       );
   }

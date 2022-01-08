@@ -9,6 +9,7 @@ import { PostSectionRequest, PostSectionValidator } from '../models/validators/p
 import {toSectionResponse} from "../helpers/section.mapper";
 import {SectionDao} from "../models/dao/section.dao";
 import { PutSectionRequest, PutSectionValidator } from '../models/validators/put-section.validator';
+import {DeleteSectionRequest, DeleteSectionValidator} from "../models/validators/delete-section.validator";
 
 @autoInjectable()
 export class BookmarkController extends Controller {
@@ -17,7 +18,8 @@ export class BookmarkController extends Controller {
 
   constructor(private bookmarkService: BookmarkService,
               private postSectionValidator: PostSectionValidator,
-              private putSectionValidator: PutSectionValidator) {
+              private putSectionValidator: PutSectionValidator,
+              private deleteSectionValidator: DeleteSectionValidator) {
     super();
   }
 
@@ -36,6 +38,12 @@ export class BookmarkController extends Controller {
     const requestContent: PutSectionRequest = await this.putSectionValidator.validate(req);
     const section: SectionDao = await this.bookmarkService.updateSection(requestContent.uuid, requestContent.title);
     this.responseHelper.created<Section>(req, res, toSectionResponse(section));
+  }
+
+  public async deleteSection(req: Request, res: Response): Promise<void> {
+    const requestContent: DeleteSectionRequest = await this.deleteSectionValidator.validate(req);
+    await this.bookmarkService.deleteSection(requestContent.uuid);
+    this.responseHelper.ok<void>(req, res, undefined);
   }
 
 }

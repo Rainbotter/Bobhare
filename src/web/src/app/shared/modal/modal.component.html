@@ -21,10 +21,10 @@
         <div class="modal-footer">
           <button #closeBtn type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="dismiss()"
                   [disabled]="isLoading">
-            Close
+            Cancel
           </button>
           <button *ngIf="!isLoading" type="submit" class="btn btn-success" [disabled]="form.invalid">
-            Submit
+            Validate
           </button>
           <button *ngIf="isLoading" class="btn btn-success" type="button" disabled>
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>

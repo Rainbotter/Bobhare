@@ -5,9 +5,6 @@ import {Injectable} from '@angular/core';
 })
 export class UrlService {
 
-  constructor() {
-  }
-
   public getGetSectionsUrls(): string {
     return 'api/sections';
   }
@@ -17,6 +14,10 @@ export class UrlService {
   }
 
   public getPutSectionsUrls(sectionUuid: string): string {
+    return `api/sections/${sectionUuid}`;
+  }
+
+  public getDeleteSectionsUrls(sectionUuid: string): string {
     return `api/sections/${sectionUuid}`;
   }
 

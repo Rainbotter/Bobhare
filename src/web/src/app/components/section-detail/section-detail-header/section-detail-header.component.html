@@ -16,6 +16,12 @@
         <li>
           <a class="dropdown-item" (click)="onClickOnAddGroup()"><i class="bi bi-plus"></i> Add group</a>
         </li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li>
+          <a class="dropdown-item" (click)="onClickOnDeleteSection()"><i class="bi bi-trash"></i> Delete section</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -43,6 +49,12 @@
                 class="btn btn-outline-dark btn-lg d-flex justify-content-between">
           <span>Add group</span>
           <i class="bi bi-plus"></i>
+        </button>
+        <button (click)="onClickOnDeleteSection()"
+                type="button"
+                class="btn btn-outline-dark btn-lg d-flex justify-content-between">
+          <span>Delete section</span>
+          <i class="bi bi-trash"></i>
         </button>
       </div>
     </div>

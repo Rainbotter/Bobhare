@@ -33,6 +33,7 @@ export class Routes {
     app.get(`${this.prefix}/sections`, this.m.logIncomingRequest(), (req, res, next) => this.bookmarkController.getSections(req, res).catch(reason => next(reason)));
     app.post(`${this.prefix}/sections`, this.m.logIncomingRequest(), (req, res, next) => this.bookmarkController.postSection(req, res).catch(reason => next(reason)));
     app.put(`${this.prefix}/sections/:uuid`, this.m.logIncomingRequest(), (req, res, next) => this.bookmarkController.putSection(req, res).catch(reason => next(reason)));
+    app.delete(`${this.prefix}/sections/:uuid`, this.m.logIncomingRequest(), (req, res, next) => this.bookmarkController.deleteSection(req, res).catch(reason => next(reason)));
   }
 
 }

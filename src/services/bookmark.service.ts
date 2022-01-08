@@ -33,4 +33,11 @@ export class BookmarkService {
     return getRepository(SectionDao).save(section);
   }
 
+  public async deleteSection(uuid: string): Promise<void> {
+    const result = await getRepository(SectionDao).delete({uuid});
+    if (result.affected === 0) {
+      throw new NotFoundError(`Section with uuid ${uuid} doesn't exist`);
+    }
+  }
+
 }
