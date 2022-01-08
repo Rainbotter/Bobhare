@@ -9,11 +9,14 @@
         </bh-section-detail-header>
       </h2>
       <div class="card-body">
-        <div class="row justify-content-start">
+        <div class="row justify-content-start" *ngIf="section?.groups?.length; else noGroup">
           <div class="col-md-3 col-sm-12 gy-1 gx-1" *ngFor="let group of section?.groups">
-            <bh-group-detail [group]="group"></bh-group-detail>
+            <bh-group-detail [group]="group" [section]="section"></bh-group-detail>
           </div>
         </div>
+        <ng-template #noGroup>
+          <bh-group-empty [section]="section"></bh-group-empty>
+        </ng-template>
       </div>
     </div>
   </div>

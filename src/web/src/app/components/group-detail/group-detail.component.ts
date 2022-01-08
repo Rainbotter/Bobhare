@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Group} from '../../../../../models/dto/bookmark.model';
+import {Group, Section} from '../../../../../models/dto/bookmark.model';
 
 @Component({
   selector: 'bh-group-detail',
@@ -9,11 +9,12 @@ import {Group} from '../../../../../models/dto/bookmark.model';
 export class GroupDetailComponent {
 
   @Input() group?: Group;
+  @Input() section?: Section;
 
   public calculateAppropriateFontColor(group: Group): string {
-    const r: number = Number("0x" + group.color.substr(1, 2));
-    const g: number = Number("0x" + group.color.substr(3, 2));
-    const b: number = Number("0x" + group.color.substr(5, 2));
+    const r: number = Number("0x" + group.color.substring(1, 2));
+    const g: number = Number("0x" + group.color.substring(3, 4));
+    const b: number = Number("0x" + group.color.substring(5, 6));
     const total: number = r + g + b;
 
     if (total > Number(400)) {

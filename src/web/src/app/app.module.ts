@@ -18,6 +18,7 @@ import {GroupDetailComponent} from './components/group-detail/group-detail.compo
 import {ModalComponent} from './shared/modal/modal.component';
 import {SectionEmptyComponent} from './components/section-empty/section-empty.component';
 import {SectionDeleteComponent} from './components/section-delete/section-delete.component';
+import { GroupEmptyComponent } from './components/group-empty/group-empty.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {SectionDeleteComponent} from './components/section-delete/section-delete
     GroupDetailComponent,
     ModalComponent,
     SectionDeleteComponent,
+    GroupEmptyComponent,
   ],
   imports: [
     BrowserModule,
