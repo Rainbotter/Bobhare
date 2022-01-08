@@ -17,7 +17,7 @@ export class GroupDao {
   @Column({name: "color", length: 255})
   color: string;
 
-  @ManyToOne(() => SectionDao)
+  @ManyToOne(() => SectionDao, {onDelete: "CASCADE"})
   @JoinColumn({name: "section_id"})
   section: SectionDao;
 

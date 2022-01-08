@@ -13,7 +13,9 @@ export class SectionDao {
     @Column({name: "title", length: 255})
     title: string;
 
-    @OneToMany(() => GroupDao, object => object.section, {eager: true})
+    @OneToMany(() => GroupDao, object => object.section, {
+        eager: true
+    })
     groups: GroupDao[];
 
 }
