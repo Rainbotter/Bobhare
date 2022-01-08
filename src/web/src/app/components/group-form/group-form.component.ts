@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {ModalComponent} from "../../shared/modal/modal.component";
 import {Group, Section} from "../../../../../models/dto/bookmark.model";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
 import {first} from "rxjs/operators";
 import {GroupService} from "../../services/group.service";
 
@@ -29,8 +28,7 @@ export class GroupFormComponent {
   public colorControl: FormControl;
 
   constructor(private groupService: GroupService,
-              private fb: FormBuilder,
-              private router: Router) {
+              private fb: FormBuilder) {
 
     this.titleControl = this.fb.control({
       value: '',

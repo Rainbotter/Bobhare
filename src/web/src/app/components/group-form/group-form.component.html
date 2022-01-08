@@ -15,12 +15,12 @@
   <div class="mb-3 row">
     <label for="color" class="col-sm-3 col-form-label">Group color</label>
     <div class="col-sm-9">
-    <input type="color" class="form-control form-control-color"
-           id="color"
-           name="color"
-           title="Choose your color"
-           required
-           [formControl]="colorControl">
+      <input type="color" class="form-control form-control-color"
+             id="color"
+             name="color"
+             title="Choose your color"
+             required
+             [formControl]="colorControl">
     </div>
   </div>
   <div *ngIf="unknownErrorOccurred" class="alert alert-danger" role="alert">

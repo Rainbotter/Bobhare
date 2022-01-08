@@ -17,7 +17,7 @@ import {GroupFormComponent} from './components/group-form/group-form.component';
 import {GroupDetailComponent} from './components/group-detail/group-detail.component';
 import {ModalComponent} from './shared/modal/modal.component';
 import {SectionEmptyComponent} from './components/section-empty/section-empty.component';
-import { SectionDeleteComponent } from './components/section-delete/section-delete.component';
+import {SectionDeleteComponent} from './components/section-delete/section-delete.component';
 
 @NgModule({
   declarations: [
