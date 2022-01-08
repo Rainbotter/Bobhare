@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     } else {
       const firstSection = this.bookmarkService.getSectionAtIndex(0);
       if (firstSection) {
-        this.router.navigate([`/${firstSection.uuid}`]);
+        this.router.navigate([`/sections/${firstSection.uuid}`]);
       }
     }
   }
