@@ -1,5 +1,6 @@
-import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {BookmarkDao} from "./bookmark.dao";
+import {SectionDao} from "./section.dao";
 
 @Entity({name: "group"})
 export class GroupDao {
@@ -15,6 +16,10 @@ export class GroupDao {
 
   @Column({name: "color", length: 255})
   color: string;
+
+  @ManyToOne(() => SectionDao)
+  @JoinColumn({name: "section_id"})
+  section: SectionDao;
 
   @OneToMany(() => BookmarkDao, object => object.id)
   bookmarks: BookmarkDao[];

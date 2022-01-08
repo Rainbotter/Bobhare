@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {BookmarkService} from '../../services/bookmark.service';
+import {SectionService} from '../../services/section.service';
 import {Subscription} from 'rxjs';
 import {Section} from "../../../../../models/dto/bookmark.model";
 import {first} from "rxjs/operators";
@@ -19,11 +19,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private bookmarkService: BookmarkService) {
+              private sectionService: SectionService) {
   }
 
   public ngOnInit(): void {
-    this.bookmarkService.sections
+    this.sectionService.sections
       .subscribe(_ => this.fetchSectionToDisplay());
 
     this.subscriptions.push(this.route.params.subscribe(params => {
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private fetchSectionToDisplay(): void {
     if (this.sectionUuidToDisplay) {
-      this.bookmarkService.getSection(this.sectionUuidToDisplay)
+      this.sectionService.getSection(this.sectionUuidToDisplay)
         .pipe(first())
         .subscribe(value => {
           if (value) {
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           }
         });
     } else {
-      const firstSection = this.bookmarkService.getSectionAtIndex(0);
+      const firstSection = this.sectionService.getSectionAtIndex(0);
       if (firstSection) {
         this.router.navigate([`/sections/${firstSection.uuid}`]);
       }

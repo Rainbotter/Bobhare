@@ -5,20 +5,32 @@ import {Injectable} from '@angular/core';
 })
 export class UrlService {
 
-  public getGetSectionsUrls(): string {
+  public getGetSectionsUrl(): string {
     return 'api/sections';
   }
 
-  public getPostSectionsUrls(): string {
+  public getPostSectionsUrl(): string {
     return 'api/sections';
   }
 
-  public getPutSectionsUrls(sectionUuid: string): string {
+  public getPutSectionsUrl(sectionUuid: string): string {
     return `api/sections/${sectionUuid}`;
   }
 
-  public getDeleteSectionsUrls(sectionUuid: string): string {
+  public getDeleteSectionsUrl(sectionUuid: string): string {
     return `api/sections/${sectionUuid}`;
+  }
+
+  public getPostGroupUrl(sectionUuid: string): string {
+    return `api/sections/${sectionUuid}/groups`;
+  }
+
+  public getPutGroupUrl(sectionUuid: string, groupUuid: string): string {
+    return `api/sections/${sectionUuid}/groups/${groupUuid}`;
+  }
+
+  public getDeleteGroupUrl(sectionUuid: string, groupUuid: string): string {
+    return `api/sections/${sectionUuid}/groups/${groupUuid}`;
   }
 
 }

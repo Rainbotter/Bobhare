@@ -10,7 +10,7 @@ import {UrlService} from './url.service';
 @Injectable({
   providedIn: 'root'
 })
-export class BookmarkService {
+export class SectionService {
 
   public sections = new BehaviorSubject<Section[]>([]);
 
@@ -20,7 +20,7 @@ export class BookmarkService {
   }
 
   private loadBookMarks(): void {
-    this.httpClient.get<Section[]>(this.urlService.getGetSectionsUrls()).pipe(first())
+    this.httpClient.get<Section[]>(this.urlService.getGetSectionsUrl()).pipe(first())
       .subscribe(value => this.sections.next(value));
   }
 
@@ -45,7 +45,7 @@ export class BookmarkService {
       title
     };
 
-    return this.httpClient.post<Section>(this.urlService.getPostSectionsUrls(), body)
+    return this.httpClient.post<Section>(this.urlService.getPostSectionsUrl(), body)
       .pipe(
         first(),
         tap(value => {
@@ -58,7 +58,7 @@ export class BookmarkService {
       title: newTitle
     };
 
-    return this.httpClient.put<Section>(this.urlService.getPutSectionsUrls(sectionUuid), body)
+    return this.httpClient.put<Section>(this.urlService.getPutSectionsUrl(sectionUuid), body)
       .pipe(
         first(),
         tap(sectionFromBackend => {
@@ -69,10 +69,10 @@ export class BookmarkService {
 
   public deleteSection(sectionUuid: string): Observable<void> {
 
-    return this.httpClient.delete<void>(this.urlService.getDeleteSectionsUrls(sectionUuid))
+    return this.httpClient.delete<void>(this.urlService.getDeleteSectionsUrl(sectionUuid))
       .pipe(
         first(),
-        tap(sectionFromBackend => {
+        tap(_ => {
           this.sections.next([...this.sections.value.filter(section => section.uuid !== sectionUuid)]);
         })
       );

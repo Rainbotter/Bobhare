@@ -12,7 +12,8 @@ export class PostSectionValidator extends InputValidator<PostSectionRequest> {
       properties: {
         title: {
           type: 'string',
-          nullable: false
+          nullable: false,
+          maxLength: 255
         }
       },
       required: ['title'],

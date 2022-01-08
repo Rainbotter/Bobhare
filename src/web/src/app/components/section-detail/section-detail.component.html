@@ -20,7 +20,8 @@
   <bh-section-form #sectionForm
                    [sectionToEdit]="section">
   </bh-section-form>
-  <bh-group-form #groupForm>
+  <bh-group-form #groupForm
+                 [section]="section">
   </bh-group-form>
   <bh-section-delete #deleteSectionForm
                      [sectionUuid]="section.uuid">

@@ -5,6 +5,7 @@ import {SectionDao} from '../models/dao/section.dao';
 import {getRepository} from 'typeorm';
 import {nanoid} from 'nanoid';
 import {NotFoundError} from '../models/errors/not-found.error';
+import {GroupDao} from "../models/dao/group.dao";
 
 @injectable()
 export class BookmarkService {
@@ -13,6 +14,13 @@ export class BookmarkService {
 
   public async getSections(): Promise<SectionDao[]> {
     return getRepository(SectionDao).find();
+  }
+
+  public async getSectionByUuid(sectionUuid: string): Promise<SectionDao> {
+    return getRepository(SectionDao).findOneOrFail({where: {uuid: sectionUuid}})
+      .catch(reason => {
+        throw new NotFoundError(reason);
+      });
   }
 
   public async createSection(title: string): Promise<SectionDao> {
@@ -38,6 +46,18 @@ export class BookmarkService {
     if (result.affected === 0) {
       throw new NotFoundError(`Section with uuid ${uuid} doesn't exist`);
     }
+  }
+
+  public async createGroup(sectionUuid: string, title: string, color: string): Promise<GroupDao> {
+    const section: SectionDao = await this.getSectionByUuid(sectionUuid);
+
+    const newGroup: GroupDao = new GroupDao();
+    newGroup.title = title;
+    newGroup.uuid = nanoid(7);
+    newGroup.color = color;
+    newGroup.bookmarks = [];
+    newGroup.section = section;
+    return getRepository(GroupDao).save(newGroup);
   }
 
 }

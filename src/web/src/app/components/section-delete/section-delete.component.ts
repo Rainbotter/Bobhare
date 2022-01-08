@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {ModalComponent} from "../../shared/modal/modal.component";
 import {Section} from "../../../../../models/dto/bookmark.model";
-import {BookmarkService} from "../../services/bookmark.service";
+import {SectionService} from "../../services/section.service";
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup} from "@angular/forms";
 
@@ -21,7 +21,7 @@ export class SectionDeleteComponent {
 
   public form: FormGroup;
 
-  constructor(private bookmarkService: BookmarkService,
+  constructor(private sectionService: SectionService,
               private fb: FormBuilder,
               private router: Router) {
     this.form = this.fb.group({});
@@ -34,7 +34,7 @@ export class SectionDeleteComponent {
   public onSubmit(): void {
     if (this.sectionUuid) {
       this.isLoading = true;
-      this.bookmarkService.deleteSection(this.sectionUuid).subscribe(
+      this.sectionService.deleteSection(this.sectionUuid).subscribe(
         () => {
           this.isLoading = false;
           this.dismiss();

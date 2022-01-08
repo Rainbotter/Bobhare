@@ -1,5 +1,5 @@
 import {Component, Input, OnDestroy, ViewChild} from '@angular/core';
-import {BookmarkService} from '../../services/bookmark.service';
+import {SectionService} from '../../services/section.service';
 import {Subscription} from 'rxjs';
 import {SectionFormComponent} from "../section-form/section-form.component";
 import {Section} from "../../../../../models/dto/bookmark.model";
@@ -17,8 +17,8 @@ export class HeaderComponent implements OnDestroy {
 
   private subscriptions: Subscription[] = [];
 
-  constructor(private bookmarkService: BookmarkService) {
-    this.subscriptions.push(this.bookmarkService.sections.subscribe(value => this.bookmarks = value));
+  constructor(private sectionService: SectionService) {
+    this.subscriptions.push(this.sectionService.sections.subscribe(value => this.bookmarks = value));
   }
 
   public ngOnDestroy() {

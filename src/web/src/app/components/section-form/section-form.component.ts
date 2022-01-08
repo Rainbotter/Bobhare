@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {first} from 'rxjs/operators';
-import {BookmarkService} from '../../services/bookmark.service';
+import {SectionService} from '../../services/section.service';
 import {ModalComponent} from '../../shared/modal/modal.component';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
@@ -25,7 +25,7 @@ export class SectionFormComponent {
   public form: FormGroup;
   public titleControl: FormControl;
 
-  constructor(private bookmarkService: BookmarkService,
+  constructor(private sectionService: SectionService,
               private fb: FormBuilder,
               private router: Router) {
     this.titleControl = this.fb.control({
@@ -63,7 +63,7 @@ export class SectionFormComponent {
   }
 
   private addNewSection(): void {
-    this.bookmarkService.createSection(this.titleControl.value).pipe(first()).subscribe(section => {
+    this.sectionService.createSection(this.titleControl.value).pipe(first()).subscribe(section => {
       this.handleSuccessSectionSubmit(section);
     }, error => {
       this.isLoading = false;
@@ -75,7 +75,7 @@ export class SectionFormComponent {
 
   private updateSection(): void {
     if (this._sectionToEdit && this._sectionToEdit.uuid) {
-      this.bookmarkService.updateSection(this._sectionToEdit.uuid, this.titleControl.value).pipe(first()).subscribe(section => {
+      this.sectionService.updateSection(this._sectionToEdit.uuid, this.titleControl.value).pipe(first()).subscribe(section => {
         this.handleSuccessSectionSubmit(section);
       }, error => {
         this.isLoading = false;

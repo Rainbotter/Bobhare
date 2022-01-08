@@ -1,4 +1,5 @@
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
+import {GroupDao} from "./group.dao";
 
 @Entity({name: "bookmark"})
 export class BookmarkDao {
@@ -17,5 +18,9 @@ export class BookmarkDao {
 
   @Column({name: "faviconUrl", length: 1500})
   faviconUrl?: string;
+
+  @ManyToOne(() => GroupDao)
+  @JoinColumn({name: "group_id"})
+  group: GroupDao;
 
 }

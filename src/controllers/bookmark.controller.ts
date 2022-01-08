@@ -3,13 +3,16 @@ import {Logger} from "winston";
 import {autoInjectable} from "tsyringe";
 import {Controller} from "./controller";
 import {Request, Response} from "express";
-import {Section} from "../models/dto/bookmark.model";
+import {Group, Section} from "../models/dto/bookmark.model";
 import {BookmarkService} from "../services/bookmark.service";
-import { PostSectionRequest, PostSectionValidator } from '../models/validators/post-section.validator';
+import {PostSectionRequest, PostSectionValidator} from '../models/validators/post-section.validator';
 import {toSectionResponse} from "../helpers/section.mapper";
 import {SectionDao} from "../models/dao/section.dao";
-import { PutSectionRequest, PutSectionValidator } from '../models/validators/put-section.validator';
+import {PutSectionRequest, PutSectionValidator} from '../models/validators/put-section.validator';
 import {DeleteSectionRequest, DeleteSectionValidator} from "../models/validators/delete-section.validator";
+import {PostGroupRequest, PostGroupValidator} from "../models/validators/post-group.validator";
+import {GroupDao} from "../models/dao/group.dao";
+import {toGroupResponse} from "../helpers/group.mapper";
 
 @autoInjectable()
 export class BookmarkController extends Controller {
@@ -19,7 +22,8 @@ export class BookmarkController extends Controller {
   constructor(private bookmarkService: BookmarkService,
               private postSectionValidator: PostSectionValidator,
               private putSectionValidator: PutSectionValidator,
-              private deleteSectionValidator: DeleteSectionValidator) {
+              private deleteSectionValidator: DeleteSectionValidator,
+              private postGroupValidator: PostGroupValidator) {
     super();
   }
 
@@ -44,6 +48,12 @@ export class BookmarkController extends Controller {
     const requestContent: DeleteSectionRequest = await this.deleteSectionValidator.validate(req);
     await this.bookmarkService.deleteSection(requestContent.uuid);
     this.responseHelper.ok<void>(req, res, undefined);
+  }
+
+  public async postGroup(req: Request, res: Response): Promise<void> {
+    const requestContent: PostGroupRequest = await this.postGroupValidator.validate(req);
+    const group: GroupDao = await this.bookmarkService.createGroup(requestContent.sectionUuid, requestContent.title, requestContent.color);
+    this.responseHelper.created<Group>(req, res, toGroupResponse(group));
   }
 
 }
