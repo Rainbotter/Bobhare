@@ -36,7 +36,7 @@ export class GroupFormComponent {
     }, [Validators.required]);
 
     this.colorControl = this.fb.control({
-      value: '#000000',
+      value: '',
       disabled: this.isLoading
     }, [Validators.required]);
 
@@ -124,7 +124,7 @@ export class GroupFormComponent {
 
   private initGroup(group?: Group): void {
     this.titleControl?.setValue(group?.title);
-    this.colorControl?.setValue(group?.color);
+    this.colorControl?.setValue(group?.color || '#000000');
   }
 
 }
