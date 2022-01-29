@@ -4,6 +4,10 @@ export const SETTINGS = {
     BACKEND_URL_PREFIX: "/api",
     LOG_LEVEL: process.env.LOG_LEVEL || 'info',
     WEB_APP_PATH: process.env.WEB_APP_PATH || 'web',
+    AUTH: {
+      HEADER: process.env.AUTH_HEADER || 'X-AUTH-BEARER',
+      PASSWORD: process.env.AUTH_PASWWORD || 'oNN&xceyvn6FCVQWZU*'
+    }
   },
   DATABASE: {
     PATH: process.env.DATABASE_PATH || "./db.sqlite3",

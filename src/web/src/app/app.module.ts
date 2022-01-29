@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 import {HomeComponent} from './pages/home/home.component';
 import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SectionFormComponent} from './components/section-form/section-form.component';
 import {SectionDetailComponent} from './components/section-detail/section-detail.component';
@@ -19,6 +19,8 @@ import {ModalComponent} from './shared/modal/modal.component';
 import {SectionEmptyComponent} from './components/section-empty/section-empty.component';
 import {SectionDeleteComponent} from './components/section-delete/section-delete.component';
 import { GroupEmptyComponent } from './components/group-empty/group-empty.component';
+import { AuthFormComponent } from './components/auth-form/auth-form.component';
+import {AuthInterceptor} from "./interceptors/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { GroupEmptyComponent } from './components/group-empty/group-empty.compon
     ModalComponent,
     SectionDeleteComponent,
     GroupEmptyComponent,
+    AuthFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,8 +45,12 @@ import { GroupEmptyComponent } from './components/group-empty/group-empty.compon
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
-  ],
-  providers: [],
+  ],  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

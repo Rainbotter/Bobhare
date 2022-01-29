@@ -3,6 +3,7 @@ import {SectionService} from '../../services/section.service';
 import {Subscription} from 'rxjs';
 import {SectionFormComponent} from "../section-form/section-form.component";
 import {Section} from "../../../../../models/dto/bookmark.model";
+import {AuthFormComponent} from "../auth-form/auth-form.component";
 
 @Component({
   selector: 'bh-header',
@@ -14,6 +15,7 @@ export class HeaderComponent implements OnDestroy {
   @Input() public bookmarks: Section[] = [];
 
   @ViewChild('sectionForm') sectionForm?: SectionFormComponent;
+  @ViewChild('authForm') authForm?: AuthFormComponent;
 
   private subscriptions: Subscription[] = [];
 
@@ -27,6 +29,10 @@ export class HeaderComponent implements OnDestroy {
 
   public openNewSectionForm(): void {
     this.sectionForm?.open();
+  }
+
+  public openAuthForm(): void {
+    this.authForm?.open();
   }
 
 }

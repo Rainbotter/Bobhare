@@ -6,6 +6,7 @@ import {Middlewares} from "./middlewares.config";
 import {WebController} from "../controllers/web.controller";
 import {SETTINGS} from "./settings.config";
 import {BookmarkController} from "../controllers/bookmark.controller";
+import {AuthController} from "../controllers/auth.controller";
 
 @singleton()
 export class Routes {
@@ -16,7 +17,8 @@ export class Routes {
 
   constructor(private m: Middlewares,
               private webController: WebController,
-              private bookmarkController: BookmarkController) {
+              private bookmarkController: BookmarkController,
+              private authController: AuthController) {
   }
 
   public setupRoutes(app: Application): void {
@@ -30,12 +32,13 @@ export class Routes {
   }
 
   private setupApiRoutes(app: Application): void {
+    app.post(`${this.prefix}/auth`, this.m.logIncomingRequest(), (req, res, next) => this.authController.postAuthentication(req, res).catch(reason => next(reason)));
     app.get(`${this.prefix}/sections`, this.m.logIncomingRequest(), (req, res, next) => this.bookmarkController.getSections(req, res).catch(reason => next(reason)));
-    app.post(`${this.prefix}/sections`, this.m.logIncomingRequest(), (req, res, next) => this.bookmarkController.postSection(req, res).catch(reason => next(reason)));
-    app.put(`${this.prefix}/sections/:uuid`, this.m.logIncomingRequest(), (req, res, next) => this.bookmarkController.putSection(req, res).catch(reason => next(reason)));
-    app.delete(`${this.prefix}/sections/:uuid`, this.m.logIncomingRequest(), (req, res, next) => this.bookmarkController.deleteSection(req, res).catch(reason => next(reason)));
+    app.post(`${this.prefix}/sections`, this.m.logIncomingRequest(), this.m.assertUserIsAuthenticated(), (req, res, next) => this.bookmarkController.postSection(req, res).catch(reason => next(reason)));
+    app.put(`${this.prefix}/sections/:uuid`, this.m.logIncomingRequest(), this.m.assertUserIsAuthenticated(), (req, res, next) => this.bookmarkController.putSection(req, res).catch(reason => next(reason)));
+    app.delete(`${this.prefix}/sections/:uuid`, this.m.logIncomingRequest(), this.m.assertUserIsAuthenticated(), (req, res, next) => this.bookmarkController.deleteSection(req, res).catch(reason => next(reason)));
 
-    app.post(`${this.prefix}/sections/:sectionUuid/groups`, this.m.logIncomingRequest(), (req, res, next) => this.bookmarkController.postGroup(req, res).catch(reason => next(reason)));
+    app.post(`${this.prefix}/sections/:sectionUuid/groups`, [this.m.logIncomingRequest(), this.m.assertUserIsAuthenticated()], (req, res, next) => this.bookmarkController.postGroup(req, res).catch(reason => next(reason)));
   }
 
 }

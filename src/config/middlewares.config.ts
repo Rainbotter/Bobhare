@@ -4,13 +4,16 @@ import {singleton} from "tsyringe";
 import {LoggerConfig} from "./logger.config";
 import {Errors} from "../models/enums/errors.enum";
 import {ResponseHelper} from "../helpers/response-helper";
+import {AuthService} from "../services/auth.service";
+import {SETTINGS} from "./settings.config";
 
 @singleton()
 export class Middlewares {
 
   private logger: Logger = LoggerConfig.getLogger("Application");
 
-  constructor(private responsesHelper: ResponseHelper) {
+  constructor(private responsesHelper: ResponseHelper,
+              private authService: AuthService) {
   }
 
   /**
@@ -46,6 +49,16 @@ export class Middlewares {
         }
         this.logger.error(error.stack);
         this.responsesHelper.internalError(req, res, error);
+      }
+    };
+  }
+
+  public assertUserIsAuthenticated(): RequestHandler {
+    return (req, res, next) => {
+      if (this.authService.auth(req.header(SETTINGS.APPLICATION.AUTH.HEADER) || "")) {
+        next();
+      } else {
+        this.responsesHelper.forbidden(req, res, new Error("Authentication failed"));
       }
     };
   }

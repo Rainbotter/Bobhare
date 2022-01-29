@@ -1,0 +1,21 @@
+<bh-modal #modal
+          (closed)="onClosed()"
+          (formSubmit)="onSubmit()"
+          [form]="form"
+          [isLoading]="isLoading"
+          [title]="'Authentication'">
+  <div class="form-floating mb-3" *ngIf="!isAlreadyAuthenticated()">
+    <input type="text" class="form-control" id="password" name="password"
+           required maxlength="40"
+           placeholder="AUth password"
+           [formControl]="passwordControl">
+    <div class="invalid-feedback">Please fill out this field.</div>
+    <label for="password">Password</label>
+  </div>
+  <div *ngIf="unknownErrorOccurred" class="alert alert-danger" role="alert">
+    An unknown error occurred. Please try again.
+  </div>
+  <div class="form-floating" *ngIf="isAlreadyAuthenticated()">
+    You are already authenticated
+  </div>
+</bh-modal>

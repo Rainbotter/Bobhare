@@ -5,6 +5,10 @@ import {Injectable} from '@angular/core';
 })
 export class UrlService {
 
+  public getGetAuthUrl(): string {
+    return 'api/auth';
+  }
+
   public getGetSectionsUrl(): string {
     return 'api/sections';
   }
