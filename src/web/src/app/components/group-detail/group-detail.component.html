@@ -2,7 +2,10 @@
   <div class="card-header text-break"
        [style.background-color]="group.color"
        [style.color]="calculateAppropriateFontColor(group)">
-    <bh-group-detail-header [color]="calculateAppropriateFontColor(group)" [group]="group"></bh-group-detail-header>
+    <bh-group-detail-header [color]="calculateAppropriateFontColor(group)"
+                            [group]="group"
+                            (onDeleteGroup)="openDeleteGroupForm()">
+    </bh-group-detail-header>
   </div>
   <ul class="list-group list-group-flush" *ngFor="let bookmark of group?.bookmarks">
     <a [href]="bookmark.url" target="_blank" class="list-group-item list-group-item-dark list-group-item-action">
@@ -11,3 +14,4 @@
   </ul>
   <bh-group-form [groupToEdit]="group" [section]="section"></bh-group-form>
 </div>
+<bh-group-delete #deleteGroupForm [section]="section" [groupUuid]="group?.uuid"></bh-group-delete>

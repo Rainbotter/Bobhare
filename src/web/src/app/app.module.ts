@@ -22,6 +22,7 @@ import { GroupEmptyComponent } from './components/group-empty/group-empty.compon
 import { AuthFormComponent } from './components/auth-form/auth-form.component';
 import {AuthInterceptor} from "./interceptors/auth.interceptor";
 import { GroupDetailHeaderComponent } from './components/group-detail/group-detail-header/group-detail-header.component';
+import { GroupDeleteComponent } from './components/group-delete/group-delete.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { GroupDetailHeaderComponent } from './components/group-detail/group-deta
     GroupEmptyComponent,
     AuthFormComponent,
     GroupDetailHeaderComponent,
+    GroupDeleteComponent,
   ],
   imports: [
     BrowserModule,
