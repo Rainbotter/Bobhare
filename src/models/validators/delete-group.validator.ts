@@ -1,10 +1,10 @@
 import {InputValidator} from './input.validator';
 import {autoInjectable} from 'tsyringe';
 
-const validatorName = 'DeleteSectionValidator';
+const validatorName = 'DeleteGroupValidator';
 
 @autoInjectable()
-export class DeleteSectionValidator extends InputValidator<DeleteSectionRequest> {
+export class DeleteGroupValidator extends InputValidator<DeleteGroupRequest> {
   constructor() {
     super({
       $id: validatorName,
@@ -14,14 +14,19 @@ export class DeleteSectionValidator extends InputValidator<DeleteSectionRequest>
           type: 'string',
           nullable: false
         },
+        groupUuid: {
+          type: 'string',
+          nullable: false
+        },
       },
-      required: ['sectionUuid'],
+      required: ['sectionUuid', 'groupUuid'],
       additionalProperties: false
     });
     this.validatorName = validatorName;
   }
 }
 
-export interface DeleteSectionRequest {
+export interface DeleteGroupRequest {
   sectionUuid: string;
+  groupUuid: string;
 }

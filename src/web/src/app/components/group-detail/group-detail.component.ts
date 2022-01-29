@@ -12,9 +12,9 @@ export class GroupDetailComponent {
   @Input() section?: Section;
 
   public calculateAppropriateFontColor(group: Group): string {
-    const r: number = Number("0x" + group.color.substring(1, 2));
+    const r: number = Number("0x" + group.color.substring(1, 3));
     const g: number = Number("0x" + group.color.substring(3, 4));
-    const b: number = Number("0x" + group.color.substring(5, 6));
+    const b: number = Number("0x" + group.color.substring(5));
     const total: number = r + g + b;
 
     if (total > Number(400)) {

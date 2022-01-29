@@ -14,12 +14,12 @@ export class PutSectionValidator extends InputValidator<PutSectionRequest> {
           type: 'string',
           nullable: false
         },
-        uuid: {
+        sectionUuid: {
           type: 'string',
           nullable: false
         },
       },
-      required: ['title'],
+      required: ['sectionUuid', 'title'],
       additionalProperties: false
     });
     this.validatorName = validatorName;
@@ -27,6 +27,6 @@ export class PutSectionValidator extends InputValidator<PutSectionRequest> {
 }
 
 export interface PutSectionRequest {
-  uuid: string;
+  sectionUuid: string;
   title: string;
 }

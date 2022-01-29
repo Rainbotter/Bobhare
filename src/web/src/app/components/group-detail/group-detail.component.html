@@ -2,7 +2,7 @@
   <div class="card-header text-break"
        [style.background-color]="group.color"
        [style.color]="calculateAppropriateFontColor(group)">
-    {{group?.title}}
+    <bh-group-detail-header [color]="calculateAppropriateFontColor(group)" [group]="group"></bh-group-detail-header>
   </div>
   <ul class="list-group list-group-flush" *ngFor="let bookmark of group?.bookmarks">
     <a [href]="bookmark.url" target="_blank" class="list-group-item list-group-item-dark list-group-item-action">

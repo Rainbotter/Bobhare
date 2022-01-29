@@ -31,20 +31,20 @@ export class BookmarkService {
     return getRepository(SectionDao).save(newSection);
   }
 
-  public async updateSection(uuid: string, title: string): Promise<SectionDao> {
-    const section = await getRepository(SectionDao).findOne({where: {uuid}});
+  public async updateSection(sectionUuid: string, title: string): Promise<SectionDao> {
+    const section = await getRepository(SectionDao).findOne({where: {uuid: sectionUuid}});
     if (!section) {
-      throw new NotFoundError(`Section with uuid ${uuid} doesn't exist`);
+      throw new NotFoundError(`Section with uuid ${sectionUuid} doesn't exist`);
     }
 
     section.title = title;
     return getRepository(SectionDao).save(section);
   }
 
-  public async deleteSection(uuid: string): Promise<void> {
-    const result = await getRepository(SectionDao).delete({uuid});
+  public async deleteSection(sectionUuid: string): Promise<void> {
+    const result = await getRepository(SectionDao).delete({uuid: sectionUuid});
     if (result.affected === 0) {
-      throw new NotFoundError(`Section with uuid ${uuid} doesn't exist`);
+      throw new NotFoundError(`Section with uuid ${sectionUuid} doesn't exist`);
     }
   }
 
@@ -58,6 +58,24 @@ export class BookmarkService {
     newGroup.bookmarks = [];
     newGroup.section = section;
     return getRepository(GroupDao).save(newGroup);
+  }
+
+  public async updateGroup(groupUuid: string, title: string, color: string): Promise<GroupDao> {
+    const group = await getRepository(GroupDao).findOne({where: {uuid: groupUuid}});
+    if (!group) {
+      throw new NotFoundError(`Group with uuid ${groupUuid} doesn't exist`);
+    }
+
+    group.title = title;
+    group.color = color;
+    return getRepository(GroupDao).save(group);
+  }
+
+  public async deleteGroup(groupUuid: string): Promise<void> {
+    const result = await getRepository(GroupDao).delete({uuid: groupUuid});
+    if (result.affected === 0) {
+      throw new NotFoundError(`Group with uuid ${groupUuid} doesn't exist`);
+    }
   }
 
 }

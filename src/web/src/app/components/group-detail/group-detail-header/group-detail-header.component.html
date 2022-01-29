@@ -1,0 +1,73 @@
+<div *ngIf="group">
+
+  <div class="d-none d-lg-block">
+    <div class="dropdown">
+      <button class="btn btn dropdown-toggle overflow-hidden group-button" type="button"
+              [style.color]="color"
+              id="section_dropdown"
+              data-bs-toggle="dropdown" aria-expanded="false">
+        <span>{{group?.title}}</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end" aria-labelledby="section_dropdown">
+        <li>
+          <a class="dropdown-item"><i class="bi bi-pencil"></i> Edit group</a>
+        </li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li>
+          <a class="dropdown-item"><i class="bi bi-link"></i> Edit Links</a>
+        </li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li>
+          <a class="dropdown-item"><i class="bi bi-trash"></i> Delete group</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="d-block d-lg-none">
+    <button class="btn btn-lg btn-block w-100 d-flex justify-content-between"
+            [style.color]="color"
+            [style.border-style]="'none'"
+            type="button"
+            data-bs-toggle="collapse"
+            [attr.data-bs-target]="'#'+collapsibleId()"
+            aria-expanded="false"
+            aria-controls="collapsible">
+      <span>{{group?.title}}</span>
+      <i class="bi bi-caret-down"></i>
+    </button>
+    <div class="collapse mt-1 w-100" #collapsible [id]="collapsibleId()">
+      <div class="btn-group w-100" role="group" aria-label="Button group with nested dropdown">
+        <button
+          type="button"
+          class="btn btn-outline-dark btn-lg d-flex justify-content-between"
+          [style.color]="color"
+          [style.border-color]="color">
+          <span>Edit section</span>
+          <i class="bi bi-pencil"></i>
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-dark btn-lg d-flex justify-content-between"
+          [style.color]="color"
+          [style.border-color]="color">
+          <span>Add group</span>
+          <i class="bi bi-plus"></i>
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-dark btn-lg d-flex justify-content-between"
+          [style.color]="color"
+          [style.border-color]="color">
+          <span>Delete section</span>
+          <i class="bi bi-trash"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
