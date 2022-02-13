@@ -6,7 +6,7 @@
           [title]="editMode ? 'Edit link' :'Add Link'">
     <div class='form-floating mb-3'>
         <input type='text' class='form-control' id='title' name='title'
-               required maxlength='40'
+               required maxlength='255'
                placeholder='new link title'
                [formControl]='titleControl'>
         <div class='invalid-feedback'>Please fill out this field.</div>
