@@ -5,3 +5,7 @@ export class SectionsParams {
 export class GroupsParams extends SectionsParams {
   groupUuid: string;
 }
+
+export class LinksParams extends GroupsParams {
+  linkUuid: string;
+}

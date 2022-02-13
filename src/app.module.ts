@@ -12,20 +12,21 @@ import { SETTINGS } from './config/settings.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SectionDao } from './models/dao/section.dao';
 import { GroupDao } from './models/dao/group.dao';
-import { BookmarkDao } from './models/dao/bookmark.dao';
+import { LinkDao } from './models/dao/link.dao';
 import { BookmarkService } from './services/bookmark/bookmark.service';
 import { WebController } from './controllers/web/web.controller';
 import { SectionsController } from './controllers/sections/sections.controller';
 import { GroupsController } from './controllers/groups/groups.controller';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import {LinksController} from "./controllers/links/links.controller";
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: SETTINGS.DATABASE.PATH,
-      entities: [SectionDao, GroupDao, BookmarkDao],
+      entities: [SectionDao, GroupDao, LinkDao],
       synchronize: true,
     }),
     ServeStaticModule.forRoot({
@@ -36,6 +37,7 @@ import { join } from 'path';
     AuthController,
     SectionsController,
     GroupsController,
+    LinksController,
     WebController,
   ],
   providers: [AuthService, BookmarkService],

@@ -5,14 +5,17 @@
         <bh-group-detail-header [color]='calculateAppropriateFontColor(group)'
                                 [group]='group'
                                 (onDeleteGroup)='openDeleteGroupForm()'
-                                (onEditGroup)="openEditGroupForm()">
+                                (onEditGroup)="openEditGroupForm()"
+                                (onEditLinks)="openNewLinkForm()"
+        >
         </bh-group-detail-header>
     </div>
-    <ul class='list-group list-group-flush' *ngFor='let bookmark of group?.bookmarks'>
+    <ul class='list-group list-group-flush' *ngFor='let bookmark of group?.links'>
         <a [href]='bookmark.url' target='_blank' class='list-group-item list-group-item-dark list-group-item-action'>
             {{bookmark.title}}
         </a>
     </ul>
     <bh-group-form #editGroupForm [groupToEdit]='group' [section]='section'></bh-group-form>
+    <bh-links-form #linksForm [section]="section" [group]="group"></bh-links-form>
 </div>
 <bh-group-delete #deleteGroupForm [section]='section' [groupUuid]='group?.uuid'></bh-group-delete>

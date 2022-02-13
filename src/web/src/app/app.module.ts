@@ -25,6 +25,10 @@ import {
   GroupDetailHeaderComponent,
 } from './components/group-detail/group-detail-header/group-detail-header.component';
 import { GroupDeleteComponent } from './components/group-delete/group-delete.component';
+import { LinkFormComponent } from './components/link-form/link-form.component';
+import { LinksFormComponent } from './components/links-form/links-form.component';
+import { LinksFormItemComponent } from './components/links-form/links-form-item/links-form-item.component';
+import { LinkDeleteComponent } from './components/link-delete/link-delete.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +48,10 @@ import { GroupDeleteComponent } from './components/group-delete/group-delete.com
     AuthFormComponent,
     GroupDetailHeaderComponent,
     GroupDeleteComponent,
+    LinkFormComponent,
+    LinksFormComponent,
+    LinksFormItemComponent,
+    LinkDeleteComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,10 +8,10 @@ export class Group {
   uuid?: string = '';
   title: string = '';
   color: string = '';
-  bookmarks: Bookmark[] = [];
+  links: Link[] = [];
 }
 
-export class Bookmark {
+export class Link {
   uuid?: string = '';
   title: string = '';
   url: string = '';

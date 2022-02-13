@@ -1,8 +1,8 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { GroupDao } from './group.dao';
 
-@Entity({ name: 'bookmark' })
-export class BookmarkDao {
+@Entity({ name: 'link' })
+export class LinkDao {
 
   @PrimaryGeneratedColumn('increment')
   id: number;
@@ -19,7 +19,7 @@ export class BookmarkDao {
   @Column({ name: 'faviconUrl', length: 1500 })
   faviconUrl?: string;
 
-  @ManyToOne(() => GroupDao)
+  @ManyToOne(() => GroupDao, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'group_id' })
   group: GroupDao;
 

@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { BookmarkDao } from './bookmark.dao';
+import { LinkDao } from './link.dao';
 import { SectionDao } from './section.dao';
 
 @Entity({ name: 'group' })
@@ -20,6 +20,8 @@ export class GroupDao {
   @JoinColumn({ name: 'section_id' })
   section: SectionDao;
 
-  @OneToMany(() => BookmarkDao, (object) => object.id)
-  bookmarks: BookmarkDao[];
+  @OneToMany(() => LinkDao, (object) => object.group, {
+    eager: true,
+  })
+  links: LinkDao[];
 }

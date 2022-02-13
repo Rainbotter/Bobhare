@@ -1,0 +1,34 @@
+<bh-modal #modal
+          (closed)='onClosed()'
+          (formSubmit)='onSubmit()'
+          [form]='form'
+          [isLoading]='isLoading'
+          [title]="editMode ? 'Edit link' :'Add Link'">
+    <div class='form-floating mb-3'>
+        <input type='text' class='form-control' id='title' name='title'
+               required maxlength='40'
+               placeholder='new link title'
+               [formControl]='titleControl'>
+        <div class='invalid-feedback'>Please fill out this field.</div>
+        <label for='title'>Group title</label>
+    </div>
+    <div class='form-floating mb-3'>
+        <input type='text' class='form-control' id='url' name='url'
+               required maxlength='40'
+               placeholder='new link url'
+               [formControl]='urlControl'>
+        <div class='invalid-feedback'>Please fill out this field.</div>
+        <label for='url'>URL</label>
+    </div>
+    <div class='form-floating mb-3'>
+        <input type='text' class='form-control' id='faviconUrl' name='faviconUrl'
+               required maxlength='40'
+               placeholder='new link favicon url'
+               [formControl]='faviconUrlControl'>
+        <div class='invalid-feedback'>Please fill out this field.</div>
+        <label for='faviconUrl'>Favicon Url (WIP)</label>
+    </div>
+    <div *ngIf='unknownErrorOccurred' class='alert alert-danger' role='alert'>
+        An unknown error occurred. Please try again.
+    </div>
+</bh-modal>

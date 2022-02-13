@@ -1,0 +1,18 @@
+<bh-modal #modal
+          (closed)='onClosed()'
+          (formSubmit)='onClosed()'
+          [title]="'Edit links'">
+
+    <div class="list-group">
+        <li class="list-group-item" *ngFor="let link of group?.links">
+            <bh-links-form-item [link]="link" (deleteLink)="onDeleteLink($event)" (editLink)="onEditLink($event)">
+            </bh-links-form-item>
+        </li>
+        <button class="btn btn-outline-success" (click)="openNewLinkForm()">
+            <i class='bi bi-plus'></i> Add link
+        </button>
+    </div>
+</bh-modal>
+<bh-link-form #newLinkForm [section]="section" [group]="group" (closed)="linkFormClosed()"></bh-link-form>
+<bh-link-form #editLinkForm [section]="section" [group]="group" [linkToEdit]="currentLink" (closed)="linkFormClosed()"></bh-link-form>
+<bh-link-delete #deleteLinkForm [section]="section" [group]="group" [link]="currentLink" (closed)="linkFormClosed()"></bh-link-delete>

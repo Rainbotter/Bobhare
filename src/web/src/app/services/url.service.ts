@@ -37,4 +37,16 @@ export class UrlService {
     return `api/sections/${sectionUuid}/groups/${groupUuid}`;
   }
 
+  public getPostLinkUrl(sectionUuid: string, groupUuid: string): string {
+    return `api/sections/${sectionUuid}/groups/${groupUuid}/links`;
+  }
+
+  public getPutLinkUrl(sectionUuid: string, groupUuid: string, linkUuid: string): string {
+    return `api/sections/${sectionUuid}/groups/${groupUuid}/links/${linkUuid}`;
+  }
+
+  public getDeleteLinkUrl(sectionUuid: string, groupUuid: string, linkUuid: string): string {
+    return `api/sections/${sectionUuid}/groups/${groupUuid}/links/${linkUuid}`;
+  }
+
 }
