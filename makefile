@@ -41,7 +41,7 @@ docker:
 
 docker-run:
 	@echo "Running docker image..."
-	@docker run --rm -p 80:3000 rainbowloutre/bobhare:$(VERSION)
+	@docker run --rm --name bobhare -p 80:3000 rainbowloutre/bobhare:$(VERSION)
 
 publish:
 	@echo "Publishing to Dockerhub..."
