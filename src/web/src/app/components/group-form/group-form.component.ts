@@ -1,14 +1,14 @@
-import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {ModalComponent} from "../../shared/modal/modal.component";
-import {Group, Section} from "../../../../../models/dto/bookmark.model";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {first} from "rxjs/operators";
-import {GroupService} from "../../services/group.service";
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ModalComponent } from '../../shared/modal/modal.component';
+import { Group, Section } from '../../../../../models/dto/bookmark.model';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
+import { GroupService } from '../../services/group.service';
 
 @Component({
   selector: 'bh-group-form',
   templateUrl: './group-form.component.html',
-  styleUrls: ['./group-form.component.scss']
+  styleUrls: ['./group-form.component.scss'],
 })
 export class GroupFormComponent {
 
@@ -32,12 +32,12 @@ export class GroupFormComponent {
 
     this.titleControl = this.fb.control({
       value: '',
-      disabled: this.isLoading
+      disabled: this.isLoading,
     }, [Validators.required]);
 
     this.colorControl = this.fb.control({
       value: '',
-      disabled: this.isLoading
+      disabled: this.isLoading,
     }, [Validators.required]);
 
     this.form = this.fb.group({

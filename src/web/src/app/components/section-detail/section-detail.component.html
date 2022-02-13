@@ -1,32 +1,32 @@
-<div *ngIf="section">
-  <div class="container-fluid p-0">
-    <div class="card">
-      <h2 class="card-header">
-        <bh-section-detail-header [section]="section"
-                                  (onEditSection)="openSectionForm()"
-                                  (onAddGroup)="openGroupForm()"
-                                  (onDeleteSection)="openDeleteSectionForm()">
+<div *ngIf='section'>
+  <div class='container-fluid p-0'>
+    <div class='card'>
+      <h2 class='card-header'>
+        <bh-section-detail-header [section]='section'
+                                  (onEditSection)='openSectionForm()'
+                                  (onAddGroup)='openGroupForm()'
+                                  (onDeleteSection)='openDeleteSectionForm()'>
         </bh-section-detail-header>
       </h2>
-      <div class="card-body">
-        <div class="row justify-content-start" *ngIf="section?.groups?.length; else noGroup">
-          <div class="col-md-3 col-sm-12 gy-1 gx-1" *ngFor="let group of section?.groups">
-            <bh-group-detail [group]="group" [section]="section"></bh-group-detail>
+      <div class='card-body'>
+        <div class='row justify-content-start' *ngIf='section?.groups?.length; else noGroup'>
+          <div class='col-md-3 col-sm-12 gy-1 gx-1' *ngFor='let group of section?.groups'>
+            <bh-group-detail [group]='group' [section]='section'></bh-group-detail>
           </div>
         </div>
         <ng-template #noGroup>
-          <bh-group-empty [section]="section"></bh-group-empty>
+          <bh-group-empty [section]='section'></bh-group-empty>
         </ng-template>
       </div>
     </div>
   </div>
   <bh-section-form #sectionForm
-                   [sectionToEdit]="section">
+                   [sectionToEdit]='section'>
   </bh-section-form>
   <bh-group-form #groupForm
-                 [section]="section">
+                 [section]='section'>
   </bh-group-form>
   <bh-section-delete #deleteSectionForm
-                     [sectionUuid]="section.uuid">
+                     [sectionUuid]='section.uuid'>
   </bh-section-delete>
 </div>

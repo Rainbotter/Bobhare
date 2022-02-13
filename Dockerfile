@@ -12,5 +12,5 @@ RUN npm install
 
 ENV DATABASE_PATH /data/db.sqlite3
 
-CMD node server.js
+CMD node main.js
 EXPOSE 3000

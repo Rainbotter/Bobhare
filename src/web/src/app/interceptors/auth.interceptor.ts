@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {ApplicationService} from "../services/application.service";
-import {environment} from "../../environments/environment";
+import { Injectable } from '@angular/core';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ApplicationService } from '../services/application.service';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -17,7 +17,7 @@ export class AuthInterceptor implements HttpInterceptor {
     if (this.app.secretHeader) {
       finalRequest = request.clone(
         {
-          headers: request.headers.append(environment.secret_header, this.app.secretHeader)
+          headers: request.headers.append(environment.secret_header, this.app.secretHeader),
         });
     } else {
       finalRequest = request;

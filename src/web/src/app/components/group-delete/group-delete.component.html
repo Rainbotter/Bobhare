@@ -1,12 +1,12 @@
 <bh-modal #modal
-          (closed)="onClosed()"
-          (formSubmit)="onSubmit()"
-          [form]="form"
-          [isLoading]="isLoading"
+          (closed)='onClosed()'
+          (formSubmit)='onSubmit()'
+          [form]='form'
+          [isLoading]='isLoading'
           [title]="'Are you sure you want to delete this group ?'">
   <p>This action can't be reverted.</p>
   <p>All the links under this group will also be deleted.</p>
-  <div *ngIf="unknownErrorOccurred" class="alert alert-danger" role="alert">
+  <div *ngIf='unknownErrorOccurred' class='alert alert-danger' role='alert'>
     An unknown error occurred. Please try again.
   </div>
 </bh-modal>

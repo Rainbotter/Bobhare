@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import * as localforage from "localforage";
+import { Injectable } from '@angular/core';
+import * as localforage from 'localforage';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApplicationService {
 
@@ -19,7 +19,7 @@ export class ApplicationService {
   }
 
   get secretHeader(): string {
-    return this._secretHeader || "";
+    return this._secretHeader || '';
   }
 
   set secretHeader(password: string) {

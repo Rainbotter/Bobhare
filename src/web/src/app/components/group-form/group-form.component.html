@@ -1,29 +1,29 @@
 <bh-modal #modal
-          (closed)="onClosed()"
-          (formSubmit)="onSubmit()"
-          [form]="form"
-          [isLoading]="isLoading"
+          (closed)='onClosed()'
+          (formSubmit)='onSubmit()'
+          [form]='form'
+          [isLoading]='isLoading'
           [title]="editMode ? 'Edit group' :'Add group'">
-  <div class="form-floating mb-3">
-    <input type="text" class="form-control" id="title" name="title"
-           required maxlength="40"
-           placeholder="new section title"
-           [formControl]="titleControl">
-    <div class="invalid-feedback">Please fill out this field.</div>
-    <label for="title">Group title</label>
+  <div class='form-floating mb-3'>
+    <input type='text' class='form-control' id='title' name='title'
+           required maxlength='40'
+           placeholder='new section title'
+           [formControl]='titleControl'>
+    <div class='invalid-feedback'>Please fill out this field.</div>
+    <label for='title'>Group title</label>
   </div>
-  <div class="mb-3 row">
-    <label for="color" class="col-sm-3 col-form-label">Group color</label>
-    <div class="col-sm-9">
-      <input type="color" class="form-control form-control-color"
-             id="color"
-             name="color"
-             title="Choose your color"
+  <div class='mb-3 row'>
+    <label for='color' class='col-sm-3 col-form-label'>Group color</label>
+    <div class='col-sm-9'>
+      <input type='color' class='form-control form-control-color'
+             id='color'
+             name='color'
+             title='Choose your color'
              required
-             [formControl]="colorControl">
+             [formControl]='colorControl'>
     </div>
   </div>
-  <div *ngIf="unknownErrorOccurred" class="alert alert-danger" role="alert">
+  <div *ngIf='unknownErrorOccurred' class='alert alert-danger' role='alert'>
     An unknown error occurred. Please try again.
   </div>
 </bh-modal>

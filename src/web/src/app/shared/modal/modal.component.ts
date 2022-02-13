@@ -1,15 +1,15 @@
-import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {FormGroup} from "@angular/forms";
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'bh-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss']
+  styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent {
 
   @Input() public form: FormGroup = new FormGroup({});
-  @Input() public title: string = "";
+  @Input() public title: string = '';
   @Input() public isLoading: boolean = false;
 
   @Output() public closed = new EventEmitter<void>();
@@ -17,9 +17,9 @@ export class ModalComponent {
 
   public r = Math.floor(Math.random() * (999999 - 100000)) + 100000;
 
-  @ViewChild('openBtn', {static: true}) openAddSectionModalBtn?: ElementRef;
+  @ViewChild('openBtn', { static: true }) openAddSectionModalBtn?: ElementRef;
 
-  @ViewChild('forceCloseBtn', {static: true}) closeModal?: ElementRef;
+  @ViewChild('forceCloseBtn', { static: true }) closeModal?: ElementRef;
 
   public modalId(): string {
     return 'addSectionModal' + this.r;

@@ -1,5 +1,5 @@
 export interface ErrorResponse {
 
-    error: string;
+  error: string;
 
 }

@@ -7,8 +7,9 @@ version:
 
 clean:
 	@echo "Cleaning..."
-	@rm -rf bin
-	@$(MAKE) -s -C web clean
+	@rm -rf dist
+	@rm -rf node_modules
+	@$(MAKE) -s -C src/web clean
 	@echo "Clean succeed"
 
 dependencies:
@@ -30,17 +31,17 @@ run-front:
 	@$(MAKE) -s -C src/web run
 
 run-back:
-	@export WEB_APP_PATH=dist/web && mkdir -p target && export DATABASE_PATH=target/local_db.sqlite3 && npm start
+	@export WEB_APP_PATH=/web && mkdir -p target && export DATABASE_PATH=target/local_db.sqlite3 && npm run start:debug
 
 docker:
 	@echo "Building docker image..."
 	@docker --version
-	@dockesr build -t rainbowloutre/bobhare:latest -t rainbowloutre/bobhare:$(VERSION) .
+	@docker build -t rainbowloutre/bobhare:latest -t rainbowloutre/bobhare:$(VERSION) .
 	@echo "Build docker image succeed"
 
 docker-run:
 	@echo "Running docker image..."
-	@docker run --rm -p 80:9000 rainbowloutre/bobhare:$(VERSION)
+	@docker run --rm -p 80:3000 rainbowloutre/bobhare:$(VERSION)
 
 publish:
 	@echo "Publishing to Dockerhub..."

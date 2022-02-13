@@ -1,14 +1,14 @@
-import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {ModalComponent} from "../../shared/modal/modal.component";
-import {Section} from "../../../../../models/dto/bookmark.model";
-import {SectionService} from "../../services/section.service";
-import {Router} from "@angular/router";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ModalComponent } from '../../shared/modal/modal.component';
+import { Section } from '../../../../../models/dto/bookmark.model';
+import { SectionService } from '../../services/section.service';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'bh-section-delete',
   templateUrl: './section-delete.component.html',
-  styleUrls: ['./section-delete.component.scss']
+  styleUrls: ['./section-delete.component.scss'],
 })
 export class SectionDeleteComponent {
 

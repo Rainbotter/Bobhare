@@ -1,13 +1,13 @@
-import {Component, Input, ViewChild} from '@angular/core';
-import {SectionFormComponent} from "../section-form/section-form.component";
-import {GroupFormComponent} from "../group-form/group-form.component";
-import {Section} from "../../../../../models/dto/bookmark.model";
-import {SectionDeleteComponent} from "../section-delete/section-delete.component";
+import { Component, Input, ViewChild } from '@angular/core';
+import { SectionFormComponent } from '../section-form/section-form.component';
+import { GroupFormComponent } from '../group-form/group-form.component';
+import { Section } from '../../../../../models/dto/bookmark.model';
+import { SectionDeleteComponent } from '../section-delete/section-delete.component';
 
 @Component({
   selector: 'bh-section-detail',
   templateUrl: './section-detail.component.html',
-  styleUrls: ['./section-detail.component.scss']
+  styleUrls: ['./section-detail.component.scss'],
 })
 export class SectionDetailComponent {
 

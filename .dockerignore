@@ -1,8 +1,5 @@
 .idea
-config
-controllers
-models
-web
-bin
+
+node_modules
 
 dist/db.sqlite3

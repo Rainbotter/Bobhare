@@ -1,10 +1,10 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Section} from "../../../../../../models/dto/bookmark.model";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Section } from '../../../../../../models/dto/bookmark.model';
 
 @Component({
   selector: 'bh-section-detail-header',
   templateUrl: './section-detail-header.component.html',
-  styleUrls: ['./section-detail-header.component.scss']
+  styleUrls: ['./section-detail-header.component.scss'],
 })
 export class SectionDetailHeaderComponent {
 

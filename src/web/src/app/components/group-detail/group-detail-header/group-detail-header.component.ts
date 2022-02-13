@@ -1,10 +1,10 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Group, Section} from "../../../../../../models/dto/bookmark.model";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Group, Section } from '../../../../../../models/dto/bookmark.model';
 
 @Component({
   selector: 'bh-group-detail-header',
   templateUrl: './group-detail-header.component.html',
-  styleUrls: ['./group-detail-header.component.scss']
+  styleUrls: ['./group-detail-header.component.scss'],
 })
 export class GroupDetailHeaderComponent {
 

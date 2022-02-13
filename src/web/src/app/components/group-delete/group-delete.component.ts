@@ -1,13 +1,13 @@
-import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {ModalComponent} from "../../shared/modal/modal.component";
-import {Section} from "../../../../../models/dto/bookmark.model";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {GroupService} from "../../services/group.service";
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ModalComponent } from '../../shared/modal/modal.component';
+import { Section } from '../../../../../models/dto/bookmark.model';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { GroupService } from '../../services/group.service';
 
 @Component({
   selector: 'bh-group-delete',
   templateUrl: './group-delete.component.html',
-  styleUrls: ['./group-delete.component.scss']
+  styleUrls: ['./group-delete.component.scss'],
 })
 export class GroupDeleteComponent {
 

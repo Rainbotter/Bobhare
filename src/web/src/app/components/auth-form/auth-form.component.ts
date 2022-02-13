@@ -1,15 +1,15 @@
-import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {Section} from "../../../../../models/dto/bookmark.model";
-import {ModalComponent} from "../../shared/modal/modal.component";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../services/auth.service";
-import {first} from "rxjs/operators";
-import {ApplicationService} from "../../services/application.service";
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Section } from '../../../../../models/dto/bookmark.model';
+import { ModalComponent } from '../../shared/modal/modal.component';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { first } from 'rxjs/operators';
+import { ApplicationService } from '../../services/application.service';
 
 @Component({
   selector: 'bh-auth-form',
   templateUrl: './auth-form.component.html',
-  styleUrls: ['./auth-form.component.scss']
+  styleUrls: ['./auth-form.component.scss'],
 })
 export class AuthFormComponent {
 
@@ -29,7 +29,7 @@ export class AuthFormComponent {
 
     this.passwordControl = this.fb.control({
       value: '',
-      disabled: this.isLoading
+      disabled: this.isLoading,
     }, [Validators.required]);
 
     this.form = this.fb.group({

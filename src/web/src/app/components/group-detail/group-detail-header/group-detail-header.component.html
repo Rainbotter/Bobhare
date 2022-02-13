@@ -1,70 +1,70 @@
-<div *ngIf="group">
+<div *ngIf='group'>
 
-  <div class="d-none d-lg-block">
-    <div class="dropdown">
-      <button class="btn btn dropdown-toggle overflow-hidden group-button" type="button"
-              [style.color]="color"
-              id="section_dropdown"
-              data-bs-toggle="dropdown" aria-expanded="false">
+  <div class='d-none d-lg-block'>
+    <div class='dropdown'>
+      <button class='btn btn dropdown-toggle overflow-hidden group-button' type='button'
+              [style.color]='color'
+              id='section_dropdown'
+              data-bs-toggle='dropdown' aria-expanded='false'>
         <span>{{group?.title}}</span>
       </button>
-      <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end" aria-labelledby="section_dropdown">
+      <ul class='dropdown-menu dropdown-menu-dark dropdown-menu-lg-end' aria-labelledby='section_dropdown'>
         <li>
-          <a class="dropdown-item" (click)="onClickOnEditGroup()"><i class="bi bi-pencil"></i> Edit group</a>
+          <a class='dropdown-item' (click)='onClickOnEditGroup()'><i class='bi bi-pencil'></i> Edit group</a>
         </li>
         <li>
-          <hr class="dropdown-divider">
+          <hr class='dropdown-divider'>
         </li>
         <li>
-          <a class="dropdown-item" (click)="onClickOnEditLinks()"><i class="bi bi-link"></i> Edit Links</a>
+          <a class='dropdown-item' (click)='onClickOnEditLinks()'><i class='bi bi-link'></i> Edit Links</a>
         </li>
         <li>
-          <hr class="dropdown-divider">
+          <hr class='dropdown-divider'>
         </li>
         <li>
-          <a class="dropdown-item" (click)="onClickOnDeleteGroup()"><i class="bi bi-trash"></i> Delete group</a>
+          <a class='dropdown-item' (click)='onClickOnDeleteGroup()'><i class='bi bi-trash'></i> Delete group</a>
         </li>
       </ul>
     </div>
   </div>
 
-  <div class="d-block d-lg-none">
-    <button class="btn btn-lg btn-block w-100 d-flex justify-content-between"
-            [style.color]="color"
+  <div class='d-block d-lg-none'>
+    <button class='btn btn-lg btn-block w-100 d-flex justify-content-between'
+            [style.color]='color'
             [style.border-style]="'none'"
-            type="button"
-            data-bs-toggle="collapse"
+            type='button'
+            data-bs-toggle='collapse'
             [attr.data-bs-target]="'#'+collapsibleId()"
-            aria-expanded="false"
-            aria-controls="collapsible">
+            aria-expanded='false'
+            aria-controls='collapsible'>
       <span>{{group?.title}}</span>
-      <i class="bi bi-caret-down"></i>
+      <i class='bi bi-caret-down'></i>
     </button>
-    <div class="collapse mt-1 w-100" #collapsible [id]="collapsibleId()">
-      <div class="btn-group w-100" role="group" aria-label="Button group with nested dropdown">
-        <button (click)="onClickOnEditGroup()"
-          type="button"
-          class="btn btn-outline-dark btn-lg d-flex justify-content-between"
-          [style.color]="color"
-          [style.border-color]="color">
+    <div class='collapse mt-1 w-100' #collapsible [id]='collapsibleId()'>
+      <div class='btn-group w-100' role='group' aria-label='Button group with nested dropdown'>
+        <button (click)='onClickOnEditGroup()'
+                type='button'
+                class='btn btn-outline-dark btn-lg d-flex justify-content-between'
+                [style.color]='color'
+                [style.border-color]='color'>
           <span>Edit group</span>
-          <i class="bi bi-pencil"></i>
+          <i class='bi bi-pencil'></i>
         </button>
-        <button (click)="onClickOnEditLinks()"
-          type="button"
-          class="btn btn-outline-dark btn-lg d-flex justify-content-between"
-          [style.color]="color"
-          [style.border-color]="color">
+        <button (click)='onClickOnEditLinks()'
+                type='button'
+                class='btn btn-outline-dark btn-lg d-flex justify-content-between'
+                [style.color]='color'
+                [style.border-color]='color'>
           <span>Edit links</span>
-          <i class="bi bi-plus"></i>
+          <i class='bi bi-plus'></i>
         </button>
-        <button (click)="onClickOnDeleteGroup()"
-          type="button"
-          class="btn btn-outline-dark btn-lg d-flex justify-content-between"
-          [style.color]="color"
-          [style.border-color]="color">
+        <button (click)='onClickOnDeleteGroup()'
+                type='button'
+                class='btn btn-outline-dark btn-lg d-flex justify-content-between'
+                [style.color]='color'
+                [style.border-color]='color'>
           <span>Delete group</span>
-          <i class="bi bi-trash"></i>
+          <i class='bi bi-trash'></i>
         </button>
       </div>
     </div>

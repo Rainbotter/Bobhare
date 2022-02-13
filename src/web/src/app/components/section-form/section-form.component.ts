@@ -1,15 +1,15 @@
-import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {first} from 'rxjs/operators';
-import {SectionService} from '../../services/section.service';
-import {ModalComponent} from '../../shared/modal/modal.component';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {Section} from '../../../../../models/dto/bookmark.model';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { first } from 'rxjs/operators';
+import { SectionService } from '../../services/section.service';
+import { ModalComponent } from '../../shared/modal/modal.component';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Section } from '../../../../../models/dto/bookmark.model';
 
 @Component({
   selector: 'bh-section-form',
   templateUrl: './section-form.component.html',
-  styleUrls: ['./section-form.component.scss']
+  styleUrls: ['./section-form.component.scss'],
 })
 export class SectionFormComponent {
 
@@ -30,10 +30,10 @@ export class SectionFormComponent {
               private router: Router) {
     this.titleControl = this.fb.control({
       value: '',
-      disabled: this.isLoading
+      disabled: this.isLoading,
     }, [Validators.required]);
     this.form = this.fb.group({
-      'titleControl': this.titleControl
+      'titleControl': this.titleControl,
     });
 
   }
