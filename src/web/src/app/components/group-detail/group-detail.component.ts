@@ -1,6 +1,7 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { Group, Section } from '../../../../../models/dto/bookmark.model';
 import { GroupDeleteComponent } from '../group-delete/group-delete.component';
+import {GroupFormComponent} from "../group-form/group-form.component";
 
 @Component({
   selector: 'bh-group-detail',
@@ -13,6 +14,7 @@ export class GroupDetailComponent {
   @Input() section?: Section;
 
   @ViewChild('deleteGroupForm') deleteGroupForm?: GroupDeleteComponent;
+  @ViewChild('editGroupForm') editGroupForm?: GroupFormComponent;
 
   public calculateAppropriateFontColor(group: Group): string {
     const r: number = Number('0x' + group.color.substring(1, 3));
@@ -29,6 +31,10 @@ export class GroupDetailComponent {
 
   public openDeleteGroupForm(): void {
     this.deleteGroupForm?.open();
+  }
+
+  public openEditGroupForm(): void {
+    this.editGroupForm?.open();
   }
 
 }

@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { SectionFormComponent } from '../section-form/section-form.component';
 import { Section } from '../../../../../models/dto/bookmark.model';
 import { AuthFormComponent } from '../auth-form/auth-form.component';
+import {ApplicationService} from "../../services/application.service";
 
 @Component({
   selector: 'bh-header',
@@ -19,7 +20,8 @@ export class HeaderComponent implements OnDestroy {
 
   private subscriptions: Subscription[] = [];
 
-  constructor(private sectionService: SectionService) {
+  constructor(private sectionService: SectionService,
+              private appService: ApplicationService) {
     this.subscriptions.push(this.sectionService.sections.subscribe(value => this.bookmarks = value));
   }
 
@@ -33,6 +35,10 @@ export class HeaderComponent implements OnDestroy {
 
   public openAuthForm(): void {
     this.authForm?.open();
+  }
+
+  public isAuthenticated(): boolean {
+    return this.appService.isAuthenticated();
   }
 
 }

@@ -2,7 +2,14 @@
 
   <div class='d-none d-lg-block'>
     <div class='dropdown'>
-      <button class='btn btn dropdown-toggle overflow-hidden group-button' type='button'
+      <button  *ngIf="!isAuthenticated()"
+               class='btn overflow-hidden group-button' type='button'
+              [style.color]='color'
+               aria-expanded='false'>
+        <span>{{group?.title}}</span>
+      </button>
+      <button *ngIf="isAuthenticated()"
+              class='btn btn dropdown-toggle overflow-hidden group-button' type='button'
               [style.color]='color'
               id='section_dropdown'
               data-bs-toggle='dropdown' aria-expanded='false'>
@@ -29,7 +36,15 @@
   </div>
 
   <div class='d-block d-lg-none'>
-    <button class='btn btn-lg btn-block w-100 d-flex justify-content-between'
+    <button *ngIf="!isAuthenticated()"
+            class='btn btn-lg btn-block w-100 d-flex justify-content-between'
+            [style.color]='color'
+            [style.border-style]="'none'"
+            type='button'>
+      <span>{{group?.title}}</span>
+    </button>
+    <button *ngIf="isAuthenticated()"
+            class='btn btn-lg btn-block w-100 d-flex justify-content-between'
             [style.color]='color'
             [style.border-style]="'none'"
             type='button'

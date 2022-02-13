@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Group, Section } from '../../../../../../models/dto/bookmark.model';
+import {ApplicationService} from "../../../services/application.service";
 
 @Component({
   selector: 'bh-group-detail-header',
@@ -18,6 +19,9 @@ export class GroupDetailHeaderComponent {
 
   private r = Math.floor(Math.random() * (999999 - 100000)) + 100000;
 
+  constructor(private appService: ApplicationService) {
+  }
+
   public collapsibleId(): string {
     return 'collapsible_' + this.r;
   }
@@ -32,6 +36,10 @@ export class GroupDetailHeaderComponent {
 
   public onClickOnEditLinks(): void {
     this.onEditLinks.emit();
+  }
+
+  public isAuthenticated(): boolean {
+    return this.appService.isAuthenticated();
   }
 
 }

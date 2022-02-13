@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Section } from '../../../../../../models/dto/bookmark.model';
+import {ApplicationService} from "../../../services/application.service";
 
 @Component({
   selector: 'bh-section-detail-header',
@@ -13,6 +14,9 @@ export class SectionDetailHeaderComponent {
   @Output() public onDeleteSection = new EventEmitter<void>();
   @Output() public onAddGroup = new EventEmitter<void>();
 
+  constructor(private appService: ApplicationService) {
+  }
+
   public onClickOnOpenSectionForm(): void {
     this.onEditSection.emit();
   }
@@ -23,6 +27,10 @@ export class SectionDetailHeaderComponent {
 
   public onClickOnAddGroup(): void {
     this.onAddGroup.emit();
+  }
+
+  public isAuthenticated(): boolean {
+    return this.appService.isAuthenticated();
   }
 
 }

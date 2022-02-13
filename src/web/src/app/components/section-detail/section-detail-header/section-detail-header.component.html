@@ -1,7 +1,12 @@
 <div *ngIf='section'>
   <div class='d-none d-lg-block'>
     <div class='dropdown'>
-      <button class='btn btn-outline-success btn-lg dropdown-toggle overflow-hidden' type='button'
+      <button *ngIf="!isAuthenticated()"
+              class='btn btn-outline-success btn-lg overflow-hidden' type='button'>
+        {{section.title}}
+      </button>
+      <button *ngIf="isAuthenticated()"
+              class='btn btn-outline-success btn-lg dropdown-toggle overflow-hidden' type='button'
               id='section_dropdown'
               data-bs-toggle='dropdown' aria-expanded='false'>
         {{section.title}}
@@ -27,7 +32,13 @@
   </div>
 
   <div class='d-block d-lg-none'>
-    <button class='btn btn-outline-dark btn-lg btn-block w-100 d-flex justify-content-between'
+    <button *ngIf="!isAuthenticated()"
+            class='btn btn-outline-success btn-lg btn-block w-100 d-flex justify-content-between'
+            type='button'>
+      <span>{{section.title}}</span>
+    </button>
+    <button *ngIf="isAuthenticated()"
+            class='btn btn-outline-success btn-lg btn-block w-100 d-flex justify-content-between'
             type='button'
             data-bs-toggle='collapse'
             data-bs-target='#collapsible'
@@ -40,19 +51,19 @@
       <div class='btn-group w-100' role='group' aria-label='Button group with nested dropdown'>
         <button (click)='onClickOnOpenSectionForm()'
                 type='button'
-                class='btn btn-outline-dark btn-lg d-flex justify-content-between'>
+                class='btn btn-outline-success btn-lg d-flex justify-content-between'>
           <span>Edit section</span>
           <i class='bi bi-pencil'></i>
         </button>
         <button (click)='onClickOnAddGroup()'
                 type='button'
-                class='btn btn-outline-dark btn-lg d-flex justify-content-between'>
+                class='btn btn-outline-success btn-lg d-flex justify-content-between'>
           <span>Add group</span>
           <i class='bi bi-plus'></i>
         </button>
         <button (click)='onClickOnDeleteSection()'
                 type='button'
-                class='btn btn-outline-dark btn-lg d-flex justify-content-between'>
+                class='btn btn-outline-success btn-lg d-flex justify-content-between'>
           <span>Delete section</span>
           <i class='bi bi-trash'></i>
         </button>

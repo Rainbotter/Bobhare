@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import * as localforage from 'localforage';
 
 @Injectable({
@@ -24,6 +24,10 @@ export class ApplicationService {
 
   set secretHeader(password: string) {
     localforage.setItem(this.storageKey, password).then(_ => this._secretHeader = password);
+  }
+
+  public isAuthenticated(): boolean {
+    return !!this._secretHeader;
   }
 
 }

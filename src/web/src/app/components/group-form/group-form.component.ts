@@ -12,7 +12,6 @@ import { GroupService } from '../../services/group.service';
 })
 export class GroupFormComponent {
 
-
   private _groupToEdit?: Group;
   public editMode: boolean = false;
 
